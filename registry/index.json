@@ -1,0 +1,52 @@
+{
+  "$schema": "https://registry.piperubio.dev/schema.json",
+  "name": "piperubio-registry",
+  "displayName": "Piperubio Component Registry",
+  "description": "Registro personalizado de componentes shadcn/ui por piperubio",
+  "version": "1.0.0",
+  "author": "piperubio",
+  "url": "https://registry.piperubio.dev",
+  "repository": "https://github.com/piperubio/shadcn-registry",
+  "style": "new-york",
+  "tailwind": {
+    "config": "",
+    "css": "app/globals.css",
+    "baseColor": "neutral",
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "components": [
+    {
+      "name": "description",
+      "type": "component",
+      "category": "data-display"
+    }
+  ],
+  "categories": [
+    {
+      "name": "data-display",
+      "label": "Data Display",
+      "description": "Componentes para mostrar y organizar información"
+    },
+    {
+      "name": "forms",
+      "label": "Forms",
+      "description": "Componentes para formularios y entrada de datos"
+    },
+    {
+      "name": "layout",
+      "label": "Layout",
+      "description": "Componentes para estructura y disposición"
+    },
+    {
+      "name": "navigation",
+      "label": "Navigation",
+      "description": "Componentes para navegación"
+    },
+    {
+      "name": "feedback",
+      "label": "Feedback",
+      "description": "Componentes para mostrar estados y mensajes"
+    }
+  ]
+}

@@ -1,6 +1,15 @@
 {
-  "name": "my-v0-project",
-  "version": "0.1.0",
+  "name": "piperubio-shadcn-registry",
+  "version": "1.0.0",
+  "description": "Registro personalizado de componentes shadcn/ui por piperubio",
+  "author": "piperubio",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/piperubio/shadcn-registry.git"
+  },
+  "homepage": "https://registry.piperubio.dev",
+  "keywords": ["shadcn", "ui", "components", "react", "tailwind", "registry", "piperubio"],
   "private": true,
   "scripts": {
     "build": "next build",

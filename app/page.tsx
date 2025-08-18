@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
-export default function DocumentationPage() {
+export default function HomePage() {
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-6xl mx-auto p-6 space-y-12">
@@ -21,18 +21,18 @@ export default function DocumentationPage() {
         <div className="text-center space-y-4 py-12">
           <div className="flex items-center justify-center gap-2 mb-4">
             <FileText className="w-8 h-8 text-primary" />
-            <h1 className="text-4xl font-bold">Description Component</h1>
+            <h1 className="text-4xl font-bold">Piperubio Component Registry</h1>
           </div>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            A unified, flexible component for displaying structured information
-            with two distinct variants: basic layout and bordered table format.
-            Now with consistent API and enhanced capabilities.
+            Registro personalizado de componentes shadcn/ui creado y mantenido por piperubio.
+            Componentes React reutilizables, bien documentados y totalmente tipados.
           </p>
           <div className="flex items-center justify-center gap-2 pt-4">
+            <Badge variant="secondary">piperubio</Badge>
+            <Badge variant="secondary">shadcn/ui</Badge>
             <Badge variant="secondary">TypeScript</Badge>
             <Badge variant="secondary">Responsive</Badge>
-            <Badge variant="secondary">Unified API</Badge>
-            <Badge variant="secondary">1-3 Columns</Badge>
+            <Badge variant="secondary">Open Source</Badge>
           </div>
         </div>
 

@@ -1,11 +1,15 @@
 # Agent Development Guidelines
 
+## Package Manager
+- **Use pnpm instead of npm** for all package management and script execution
+- This project uses pnpm as the preferred package manager
+
 ## Build/Test Commands
-- **Build**: `npm run build` (Next.js build)
-- **Dev**: `npm run dev` (development server)
-- **Lint**: `npm run lint` (Next.js ESLint)
-- **Tests**: `npm test` (Vitest), `npm run test:run` (single run), `npm run test:ui` (UI mode)
-- **Single test**: `npm test -- components/description/__tests__/description.test.tsx`
+- **Build**: `pnpm run build` (Next.js build)
+- **Dev**: `pnpm run dev` (development server)
+- **Lint**: `pnpm run lint` (Next.js ESLint)
+- **Tests**: `pnpm test` (Vitest), `pnpm run test:run` (single run), `pnpm run test:ui` (UI mode)
+- **Single test**: `pnpm test -- components/description/__tests__/description.test.tsx`
 
 ## Code Style
 - Use TypeScript with strict types, explicit interfaces for props
