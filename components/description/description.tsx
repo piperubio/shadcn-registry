@@ -5,7 +5,6 @@ import type { ReactNode } from "react";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
-// Context para pasar el número de columnas y variante
 const DescriptionContext = createContext<{ columns: number; variant: "basic" | "bordered" }>({ 
   columns: 3, 
   variant: "basic" 

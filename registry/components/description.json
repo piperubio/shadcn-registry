@@ -1,7 +1,7 @@
 {
   "name": "description",
   "displayName": "Description",
-  "description": "Un componente flexible para mostrar información estructurada con dos variantes distintivas: básica y con bordes.",
+  "description": "A flexible component for displaying structured information with two distinctive variants: basic and bordered.",
   "type": "component",
   "category": "data-display",
   "version": "1.0.0",
@@ -34,33 +34,33 @@
       {
         "name": "title",
         "type": "string",
-        "description": "Título opcional para la sección",
+        "description": "Optional title for the section",
         "required": false
       },
       {
         "name": "variant",
         "type": "'basic' | 'bordered'",
-        "description": "Variante visual del componente",
+        "description": "Visual variant of the component",
         "default": "basic",
         "required": false
       },
       {
         "name": "columns",
         "type": "1 | 2 | 3",
-        "description": "Número de columnas responsivas",
+        "description": "Number of responsive columns",
         "default": 3,
         "required": false
       },
       {
         "name": "className",
         "type": "string",
-        "description": "Clases CSS adicionales",
+        "description": "Additional CSS classes",
         "required": false
       },
       {
         "name": "children",
         "type": "ReactNode",
-        "description": "Elementos DescriptionItem o DescriptionSection",
+        "description": "DescriptionItem or DescriptionSection elements",
         "required": true
       }
     ],
@@ -68,26 +68,26 @@
       {
         "name": "label",
         "type": "string",
-        "description": "Etiqueta del campo",
+        "description": "Field label",
         "required": true
       },
       {
         "name": "value",
         "type": "ReactNode",
-        "description": "Valor del campo (puede ser JSX)",
+        "description": "Field value (can be JSX)",
         "required": true
       },
       {
         "name": "span",
         "type": "1 | 2 | 3",
-        "description": "Número de columnas que ocupa el elemento",
+        "description": "Number of columns the element spans",
         "default": 1,
         "required": false
       },
       {
         "name": "className",
         "type": "string",
-        "description": "Clases CSS adicionales",
+        "description": "Additional CSS classes",
         "required": false
       }
     ],
@@ -95,19 +95,19 @@
       {
         "name": "label",
         "type": "string",
-        "description": "Etiqueta de la sección",
+        "description": "Section label",
         "required": true
       },
       {
         "name": "children",
         "type": "ReactNode",
-        "description": "Contenido de la sección",
+        "description": "Section content",
         "required": true
       },
       {
         "name": "className",
         "type": "string",
-        "description": "Clases CSS adicionales",
+        "description": "Additional CSS classes",
         "required": false
       }
     ]
@@ -115,39 +115,39 @@
   "examples": [
     {
       "name": "basic",
-      "title": "Uso básico",
-      "description": "Ejemplo simple con variante básica",
+      "title": "Basic usage",
+      "description": "Simple example with basic variant",
       "code": "import { Description, DescriptionItem } from \"@/components/ui/description\";\n\n<Description title=\"User Profile\" variant=\"basic\">\n  <DescriptionItem label=\"Name\" value=\"John Doe\" />\n  <DescriptionItem label=\"Email\" value=\"john@example.com\" />\n  <DescriptionItem label=\"Role\" value=\"Administrator\" />\n</Description>"
     },
     {
       "name": "bordered",
-      "title": "Variante con bordes",
-      "description": "Ejemplo con variante bordered para datos estructurados",
+      "title": "Bordered variant",
+      "description": "Example with bordered variant for structured data",
       "code": "import { Description, DescriptionItem, DescriptionSection } from \"@/components/ui/description\";\n\n<Description title=\"Service Details\" variant=\"bordered\" columns={3}>\n  <DescriptionItem label=\"Service\" value=\"Cloud Database\" />\n  <DescriptionItem label=\"Plan\" value=\"Professional\" />\n  <DescriptionItem label=\"Status\" value=\"Active\" />\n  <DescriptionSection label=\"Configuration\">\n    <div>Database: PostgreSQL 14</div>\n    <div>Storage: 100 GB SSD</div>\n  </DescriptionSection>\n</Description>"
     },
     {
       "name": "responsive",
-      "title": "Columnas responsivas",
-      "description": "Ejemplo con diferentes números de columnas",
+      "title": "Responsive columns",
+      "description": "Example with different numbers of columns",
       "code": "import { Description, DescriptionItem } from \"@/components/ui/description\";\n\n<Description title=\"Contact Info\" columns={2}>\n  <DescriptionItem label=\"Name\" value=\"Jane Smith\" />\n  <DescriptionItem label=\"Email\" value=\"jane@company.com\" />\n  <DescriptionItem label=\"Phone\" value=\"+1 (555) 123-4567\" />\n  <DescriptionItem label=\"Address\" value=\"123 Main St, Anytown, USA\" span={2} />\n</Description>"
     }
   ],
   "features": [
-    "Dos variantes: básica y con bordes",
-    "Soporte para 1-3 columnas responsivas",
-    "Spanning de columnas personalizable",
-    "Valores ReactNode para contenido enriquecido",
-    "Secciones agrupadas",
-    "Tipado completo con TypeScript",
-    "Accesibilidad integrada",
-    "Totalmente personalizable con CSS"
+    "Two variants: basic and bordered",
+    "Support for 1-3 responsive columns",
+    "Customizable column spanning",
+    "ReactNode values for rich content",
+    "Grouped sections",
+    "Full TypeScript typing",
+    "Built-in accessibility",
+    "Fully customizable with CSS"
   ],
   "useCases": [
-    "Perfiles de usuario",
-    "Configuraciones de servicio",
-    "Detalles de productos",
-    "Información de contacto",
-    "Metadatos de archivos",
-    "Especificaciones técnicas"
+    "User profiles",
+    "Service configurations",
+    "Product details",
+    "Contact information",
+    "File metadata",
+    "Technical specifications"
   ]
 }

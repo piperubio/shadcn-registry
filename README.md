@@ -1,79 +1,81 @@
 # 🎨 Piperubio Component Registry
 
-Un registro personalizado de componentes shadcn/ui creado y mantenido por **piperubio**. Este proyecto proporciona componentes React reutilizables, bien documentados y totalmente tipados, basados en el ecosistema shadcn/ui.
+A custom shadcn/ui component registry created and maintained by **piperubio**. This project provides reusable, well-documented, and fully typed React components based on the shadcn/ui ecosystem.
 
-## ✨ Características
+*[🇪🇸 Leer en español](README.es.md)*
 
-- 🎯 **Componentes optimizados**: Basados en shadcn/ui con mejoras y variantes personalizadas
-- 📱 **Responsive**: Diseño mobile-first con soporte completo para diferentes tamaños de pantalla
-- 🎨 **Theming**: Soporte completo para modo oscuro y personalización de temas
-- 📊 **TypeScript**: Tipado completo para una mejor experiencia de desarrollo
-- 🧪 **Testing**: Suite de tests completa con Vitest y Testing Library
-- 📚 **Documentación**: Documentación interactiva con ejemplos en vivo
+## ✨ Features
 
-## 🚀 Inicio rápido
+- 🎯 **Optimized components**: Based on shadcn/ui with custom enhancements and variants
+- 📱 **Responsive**: Mobile-first design with full support for different screen sizes
+- 🎨 **Theming**: Complete dark mode support and theme customization
+- 📊 **TypeScript**: Full typing for better development experience
+- 🧪 **Testing**: Complete test suite with Vitest and Testing Library
+- 📚 **Documentation**: Interactive documentation with live examples
 
-### Instalación
+## 🚀 Quick start
 
-1. **Clona el repositorio**
+### Installation
+
+1. **Clone the repository**
    ```bash
    git clone https://github.com/piperubio/shadcn-registry.git
    cd shadcn-registry
    ```
 
-2. **Instala las dependencias**
+2. **Install dependencies**
    ```bash
-   npm install
-   # o
    pnpm install
-   # o
+   # or
+   npm install
+   # or
    yarn install
    ```
 
-3. **Inicia el servidor de desarrollo**
+3. **Start the development server**
    ```bash
-   npm run dev
+   pnpm run dev
    ```
 
-4. **Abre tu navegador**
+4. **Open your browser**
    ```
    http://localhost:3000
    ```
 
-### Uso como registro
+### Using as a registry
 
-Para usar este registro con la CLI de shadcn/ui:
+To use this registry with the shadcn/ui CLI:
 
 ```bash
 npx shadcn@latest add --registry-url https://registry.piperubio.dev
 ```
 
-### Instalación manual de componentes
+### Manual component installation
 
-Si prefieres copiar y pegar los componentes:
+If you prefer to copy and paste components:
 
-1. Copia el código del componente desde la documentación
-2. Asegúrate de tener las dependencias requeridas instaladas
-3. Pega el código en tu proyecto
+1. Copy the component code from the documentation
+2. Ensure you have the required dependencies installed
+3. Paste the code into your project
 
-## 📦 Componentes disponibles
+## 📦 Available components
 
 ### Description Component
-Un componente flexible para mostrar información estructurada con dos variantes distintivas.
+A flexible component for displaying structured information with two distinctive variants.
 
-**Características:**
-- ✅ Dos variantes: `basic` y `bordered`
-- ✅ Soporte para 1-3 columnas responsivas
-- ✅ Spanning de columnas personalizable
-- ✅ Valores ReactNode para contenido enriquecido
-- ✅ Secciones agrupadas
+**Features:**
+- ✅ Two variants: `basic` and `bordered`
+- ✅ Support for 1-3 responsive columns
+- ✅ Customizable column spanning
+- ✅ ReactNode values for rich content
+- ✅ Grouped sections
 
-**Instalación:**
+**Installation:**
 ```bash
 npx shadcn@latest add description --registry-url https://registry.piperubio.dev
 ```
 
-**Uso básico:**
+**Basic usage:**
 ```tsx
 import { Description, DescriptionItem } from "@/components/description/description";
 
@@ -84,102 +86,102 @@ import { Description, DescriptionItem } from "@/components/description/descripti
 </Description>
 ```
 
-## 🛠️ Desarrollo
+## 🛠️ Development
 
-### Estructura del proyecto
+### Project structure
 
 ```
 shadcn-registry/
-├── app/                    # Aplicación Next.js
-│   ├── globals.css        # Estilos globales
-│   ├── layout.tsx         # Layout principal
-│   └── page.tsx           # Página de documentación
-├── components/            # Componentes del registro
-│   ├── description/       # Componente Description
-│   │   ├── __tests__/     # Tests del componente
+├── app/                    # Next.js application
+│   ├── globals.css        # Global styles
+│   ├── layout.tsx         # Main layout
+│   └── page.tsx           # Documentation page
+├── components/            # Registry components
+│   ├── description/       # Description component
+│   │   ├── __tests__/     # Component tests
 │   │   └── description.tsx
-│   └── ui/                # Componentes UI base de shadcn
-├── lib/                   # Utilidades
-│   └── utils.ts          # Función cn() y utilidades
-├── registry/             # Metadatos del registro (próximamente)
-└── src/test/             # Configuración de tests
+│   └── ui/                # Base shadcn UI components
+├── lib/                   # Utilities
+│   └── utils.ts          # cn() function and utilities
+├── registry/             # Registry metadata (coming soon)
+└── src/test/             # Test configuration
 ```
 
-### Scripts disponibles
+### Available scripts
 
 ```bash
-# Desarrollo
-npm run dev          # Servidor de desarrollo
+# Development
+pnpm run dev          # Development server
 
 # Build
-npm run build        # Build de producción
-npm run start        # Servidor de producción
+pnpm run build        # Production build
+pnpm run start        # Production server
 
 # Testing
-npm test             # Ejecutar tests en modo watch
-npm run test:run     # Ejecutar tests una vez
-npm run test:ui      # Abrir interfaz de tests
+pnpm test             # Run tests in watch mode
+pnpm run test:run     # Run tests once
+pnpm run test:ui      # Open test interface
 
 # Linting
-npm run lint         # Ejecutar ESLint
+pnpm run lint         # Run ESLint
 ```
 
-### Ejecutar tests
+### Running tests
 
 ```bash
-# Todos los tests
-npm test
+# All tests
+pnpm test
 
-# Test específico
-npm test -- components/description/__tests__/description.test.tsx
+# Specific test
+pnpm test -- components/description/__tests__/description.test.tsx
 
-# Tests con interfaz gráfica
-npm run test:ui
+# Tests with UI
+pnpm run test:ui
 ```
 
-## 🏗️ Arquitectura
+## 🏗️ Architecture
 
-### Stack tecnológico
+### Tech stack
 
-- **Framework**: Next.js 15 con React 19
-- **Styling**: Tailwind CSS v4 con CSS Variables
+- **Framework**: Next.js 15 with React 19
+- **Styling**: Tailwind CSS v4 with CSS Variables
 - **UI Components**: Radix UI primitives
 - **Testing**: Vitest + Testing Library
-- **TypeScript**: Configuración estricta
-- **Build**: Next.js build optimizado
+- **TypeScript**: Strict configuration
+- **Build**: Optimized Next.js build
 
-### Patrones de diseño
+### Design patterns
 
-- **Componentes funcionales** con hooks de React
-- **Context API** para configuración compartida
-- **Class Variance Authority (cva)** para variantes de componentes
-- **Path aliases** (@/) para imports limpios
-- **CSS Variables** para theming consistente
+- **Functional components** with React hooks
+- **Context API** for shared configuration
+- **Class Variance Authority (cva)** for component variants
+- **Path aliases** (@/) for clean imports
+- **CSS Variables** for consistent theming
 
-## 🎨 Personalización
+## 🎨 Customization
 
-### Temas
+### Themes
 
-El registro soporta personalización completa de temas a través de CSS variables:
+The registry supports complete theme customization through CSS variables:
 
 ```css
 :root {
   --background: 0 0% 100%;
   --foreground: 222.2 84% 4.9%;
   --primary: 222.2 47.4% 11.2%;
-  /* ... más variables */
+  /* ... more variables */
 }
 
 .dark {
   --background: 222.2 84% 4.9%;
   --foreground: 210 40% 98%;
-  /* ... variables para modo oscuro */
+  /* ... dark mode variables */
 }
 ```
 
-### Configuración
+### Configuration
 
-La configuración del proyecto se encuentra en `components.json`:
+Project configuration is found in `components.json`:
 
 ```json
 {
@@ -198,68 +200,68 @@ La configuración del proyecto se encuentra en `components.json`:
 }
 ```
 
-## 🤝 Contribución
+## 🤝 Contributing
 
-### Proceso de contribución
+### Contribution process
 
-1. **Fork** el repositorio
-2. **Crea** una rama para tu feature (`git checkout -b feature/nueva-funcionalidad`)
-3. **Commit** tus cambios (`git commit -m 'Agrega nueva funcionalidad'`)
-4. **Push** a la rama (`git push origin feature/nueva-funcionalidad`)
-5. **Abre** un Pull Request
+1. **Fork** the repository
+2. **Create** a branch for your feature (`git checkout -b feature/new-functionality`)
+3. **Commit** your changes (`git commit -m 'Add new functionality'`)
+4. **Push** to the branch (`git push origin feature/new-functionality`)
+5. **Open** a Pull Request
 
 ### Guidelines
 
-- ✅ Usa TypeScript con tipado estricto
-- ✅ Sigue las convenciones de naming del proyecto
-- ✅ Agrega tests para nuevos componentes
-- ✅ Documenta los props con JSDoc
-- ✅ Asegúrate de que los tests pasen (`npm test`)
-- ✅ Ejecuta linting (`npm run lint`)
+- ✅ Use TypeScript with strict typing
+- ✅ Follow project naming conventions
+- ✅ Add tests for new components
+- ✅ Document props with JSDoc
+- ✅ Ensure tests pass (`pnpm test`)
+- ✅ Run linting (`pnpm run lint`)
 
-### Agregar un nuevo componente
+### Adding a new component
 
-1. **Crea** la estructura del componente:
+1. **Create** the component structure:
    ```
-   components/mi-componente/
+   components/my-component/
    ├── __tests__/
-   │   └── mi-componente.test.tsx
-   └── mi-componente.tsx
+   │   └── my-component.test.tsx
+   └── my-component.tsx
    ```
 
-2. **Implementa** el componente con:
-   - Props tipadas con TypeScript
-   - Variantes usando `cva`
-   - Tests comprehensivos
-   - Documentación JSDoc
+2. **Implement** the component with:
+   - TypeScript typed props
+   - Variants using `cva`
+   - Comprehensive tests
+   - JSDoc documentation
 
-3. **Agrega** ejemplos a la documentación
+3. **Add** examples to the documentation
 
-## 📋 API del Registry
+## 📋 Registry API
 
-### Endpoints disponibles
+### Available endpoints
 
 ```
 GET /api/registry
-├── Lista todos los componentes disponibles
+├── Lists all available components
 ├── Response: Array<ComponentInfo>
 
 GET /api/registry/[name]
-├── Obtiene información detallada de un componente
+├── Gets detailed information about a component
 ├── Response: ComponentDetail
 
 GET /api/registry/[name]/code
-├── Obtiene el código fuente del componente
+├── Gets the component source code
 ├── Response: { files: ComponentFile[] }
 ```
 
-### Ejemplo de respuesta
+### Example response
 
 ```json
 {
   "name": "description",
   "displayName": "Description",
-  "description": "Componente flexible para mostrar información estructurada",
+  "description": "Flexible component for displaying structured information",
   "version": "1.0.0",
   "dependencies": ["@radix-ui/react-slot", "class-variance-authority"],
   "files": [
@@ -273,22 +275,22 @@ GET /api/registry/[name]/code
 }
 ```
 
-## 📄 Licencia
+## 📄 License
 
-Este proyecto está licenciado bajo la Licencia MIT. Ver el archivo [LICENSE](LICENSE) para más detalles.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
-## 👤 Autor
+## 👤 Author
 
 **piperubio**
 - GitHub: [@piperubio](https://github.com/piperubio)
 - Website: [piperubio.dev](https://piperubio.dev)
 
-## 🙏 Agradecimientos
+## 🙏 Acknowledgments
 
-- [shadcn](https://github.com/shadcn) por crear el increíble sistema shadcn/ui
-- [Radix UI](https://radix-ui.com) por los primitives accesibles
-- La comunidad de React por las herramientas y librerías
+- [shadcn](https://github.com/shadcn) for creating the amazing shadcn/ui system
+- [Radix UI](https://radix-ui.com) for accessible primitives
+- The React community for tools and libraries
 
 ---
 
-**¿Necesitas ayuda?** Abre un [issue](https://github.com/piperubio/shadcn-registry/issues) o consulta la [documentación](https://registry.piperubio.dev).
+**Need help?** Open an [issue](https://github.com/piperubio/shadcn-registry/issues) or check the [documentation](https://registry.piperubio.dev).

@@ -24,8 +24,8 @@ export default function HomePage() {
             <h1 className="text-4xl font-bold">Piperubio Component Registry</h1>
           </div>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Registro personalizado de componentes shadcn/ui creado y mantenido por piperubio.
-            Componentes React reutilizables, bien documentados y totalmente tipados.
+            Custom shadcn/ui component registry created and maintained by piperubio.
+            Reusable React components, well-documented and fully typed.
           </p>
           <div className="flex items-center justify-center gap-2 pt-4">
             <Badge variant="secondary">piperubio</Badge>

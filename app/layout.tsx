@@ -4,9 +4,8 @@ import { GeistMono } from 'geist/font/mono'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Piperubio Component Registry',
-  description: 'Registro personalizado de componentes shadcn/ui por piperubio',
-  generator: 'piperubio',
+  title: 'Piperubio Shadcn Component Registry',
+  description: 'Custom shadcn/ui component registry by piperubio',
 }
 
 export default function RootLayout({
@@ -15,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es">
+    <html lang="en">
       <head>
         <style>{`
 html {
