@@ -130,7 +130,7 @@ describe("Description Component", () => {
         </Description>
       );
 
-      const container = screen.getByText("Name:").closest(".description-basic");
+      const container = screen.getByTestId("description-basic");
       expect(container).toBeInTheDocument();
     });
 
@@ -141,9 +141,7 @@ describe("Description Component", () => {
         </Description>
       );
 
-      const container = screen
-        .getByText("Name:")
-        .closest(".description-bordered");
+      const container = screen.getByTestId("description-bordered");
       expect(container).toBeInTheDocument();
     });
 
@@ -175,7 +173,7 @@ describe("Description Component", () => {
         </Description>
       );
 
-      let container = screen.getByText("Name:").closest(".description-basic");
+      let container = screen.getByTestId("description-basic");
       expect(container).toHaveClass("grid-cols-1");
 
       rerender(
@@ -184,7 +182,7 @@ describe("Description Component", () => {
         </Description>
       );
 
-      container = screen.getByText("Name:").closest(".description-basic");
+      container = screen.getByTestId("description-basic");
       expect(container).toHaveClass("grid-cols-1", "md:grid-cols-2");
 
       rerender(
@@ -193,7 +191,7 @@ describe("Description Component", () => {
         </Description>
       );
 
-      container = screen.getByText("Name:").closest(".description-basic");
+      container = screen.getByTestId("description-basic");
       expect(container).toHaveClass(
         "grid-cols-1",
         "md:grid-cols-2",
@@ -208,9 +206,7 @@ describe("Description Component", () => {
         </Description>
       );
 
-      const gridContainer = screen
-        .getByText("Name:")
-        .closest(".description-basic");
+      const gridContainer = screen.getByTestId("description-basic");
       expect(gridContainer).toHaveClass("custom-description");
     });
   });
@@ -241,9 +237,7 @@ describe("Description Component", () => {
         </Description>
       );
 
-      const section = screen
-        .getByText("Personal Information")
-        .closest(".description-section");
+      const section = screen.getByTestId("description-section");
       expect(section).toHaveClass("custom-section");
     });
   });

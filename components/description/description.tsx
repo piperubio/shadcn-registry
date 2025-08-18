@@ -3,9 +3,13 @@
 import React, { createContext, useContext } from "react";
 import type { ReactNode } from "react";
 import { Card } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
-// Context para pasar el número de columnas
-const DescriptionContext = createContext<{ columns: number }>({ columns: 3 });
+// Context para pasar el número de columnas y variante
+const DescriptionContext = createContext<{ columns: number; variant: "basic" | "bordered" }>({ 
+  columns: 3, 
+  variant: "basic" 
+});
 
 interface DescriptionItemProps {
   label: string;
@@ -34,7 +38,7 @@ export function DescriptionItem({
   className = "",
   span = 1,
 }: DescriptionItemProps) {
-  const { columns } = useContext(DescriptionContext);
+  const { columns, variant } = useContext(DescriptionContext);
 
   // Generate the appropriate col-span class based on span value
   const getColSpanClass = (span: number = 1, maxColumns: number = 3) => {
@@ -60,13 +64,41 @@ export function DescriptionItem({
 
   const colSpanClass = getColSpanClass(span, columns);
 
+  if (variant === "bordered") {
+    const isSpanning = span > 1;
+    
+    return (
+      <div
+        className={cn(
+          "grid border-b last:border-b-0",
+          isSpanning ? "col-span-full grid-cols-1" : "grid-cols-2",
+          colSpanClass,
+          className
+        )}
+        data-span={span}
+      >
+        <span className={cn(
+          "text-sm font-medium text-muted-foreground",
+          isSpanning 
+            ? "p-4 bg-muted/30 border-b" 
+            : "p-4 bg-muted/30 border-r shrink-0"
+        )}>
+          {label}:
+        </span>
+        <span className="p-4 text-sm break-words">
+          {value}
+        </span>
+      </div>
+    );
+  }
+
   return (
     <div
-      className={`description-item ${colSpanClass} ${className}`}
+      className={cn("flex gap-2", colSpanClass, className)}
       data-span={span}
     >
-      <span className="description-label">{label}:</span>
-      <span className="description-value">{value}</span>
+      <span className="text-muted-foreground shrink-0">{label}:</span>
+      <span className="font-medium break-words">{value}</span>
     </div>
   );
 }
@@ -76,10 +108,20 @@ export function DescriptionSection({
   children,
   className = "",
 }: DescriptionSectionProps) {
+  const { variant } = useContext(DescriptionContext);
+  
   return (
-    <div className={`description-section ${className}`}>
-      <div className="description-section-label">{label}</div>
-      <div className="description-section-content">{children}</div>
+    <div className={cn(
+      "grid border-b last:border-b-0",
+      variant === "bordered" ? "col-span-full grid-cols-1" : "",
+      className
+    )} data-testid="description-section">
+      <div className="p-4 bg-muted/30 text-sm font-medium text-muted-foreground border-b">
+        {label}
+      </div>
+      <div className="p-4 text-sm space-y-1">
+        {children}
+      </div>
     </div>
   );
 }
@@ -112,12 +154,18 @@ export function Description({
         : "divide-y md:divide-y-0 md:divide-x lg:divide-x";
 
     return (
-      <DescriptionContext.Provider value={{ columns }}>
+      <DescriptionContext.Provider value={{ columns, variant }}>
         <div className="">
           {title && <h2 className="text-xl font-semibold mb-4">{title}</h2>}
           <Card className="p-0 overflow-hidden">
             <div
-              className={`grid ${borderedGridCols[columns]} ${divider} description-bordered ${className}`}
+              className={cn(
+                "grid",
+                borderedGridCols[columns],
+                divider,
+                className
+              )}
+              data-testid="description-bordered"
             >
               {children}
             </div>
@@ -128,11 +176,16 @@ export function Description({
   }
 
   return (
-    <DescriptionContext.Provider value={{ columns }}>
+    <DescriptionContext.Provider value={{ columns, variant }}>
       <div className="">
         {title && <h2 className="text-xl font-semibold mb-4">{title}</h2>}
         <div
-          className={`grid ${gridCols[columns]} gap-6 text-sm description-basic ${className}`}
+          className={cn(
+            "grid gap-6 text-sm",
+            gridCols[columns],
+            className
+          )}
+          data-testid="description-basic"
         >
           {children}
         </div>

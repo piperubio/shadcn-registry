@@ -48,7 +48,7 @@ describe("Description Integration Tests", () => {
       );
 
       // Verificar layout básico
-      const container = screen.getByText("Name:").closest(".description-basic");
+      const container = screen.getByTestId("description-basic");
       expect(container).toHaveClass(
         "grid-cols-1",
         "md:grid-cols-2",
@@ -96,7 +96,7 @@ describe("Description Integration Tests", () => {
       );
 
       // Verificar layout responsivo de 2 columnas
-      const container = screen.getByText("Name:").closest(".description-basic");
+      const container = screen.getByTestId("description-basic");
       expect(container).toHaveClass("grid-cols-1", "md:grid-cols-2");
     });
 
@@ -153,9 +153,7 @@ describe("Description Integration Tests", () => {
       );
 
       // Verificar bordered variant
-      const container = screen
-        .getByText("Service:")
-        .closest(".description-bordered");
+      const container = screen.getByTestId("description-bordered");
       expect(container).toBeInTheDocument();
       expect(container).toHaveClass(
         "divide-y",

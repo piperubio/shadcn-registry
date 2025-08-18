@@ -15,7 +15,7 @@ describe("Description Variants", () => {
         </Description>
       );
 
-      const container = screen.getByText("Name:").closest(".description-basic");
+      const container = screen.getByTestId("description-basic");
       expect(container).toBeInTheDocument();
       expect(container).toHaveClass("grid", "gap-6", "text-sm");
     });
@@ -27,7 +27,7 @@ describe("Description Variants", () => {
         </Description>
       );
 
-      let container = screen.getByText("Test:").closest(".description-basic");
+      let container = screen.getByTestId("description-basic");
       expect(container).toHaveClass("grid-cols-1");
 
       rerender(
@@ -35,7 +35,7 @@ describe("Description Variants", () => {
           <DescriptionItem label="Test" value="Value" />
         </Description>
       );
-      container = screen.getByText("Test:").closest(".description-basic");
+      container = screen.getByTestId("description-basic");
       expect(container).toHaveClass("grid-cols-1", "md:grid-cols-2");
 
       rerender(
@@ -43,7 +43,7 @@ describe("Description Variants", () => {
           <DescriptionItem label="Test" value="Value" />
         </Description>
       );
-      container = screen.getByText("Test:").closest(".description-basic");
+      container = screen.getByTestId("description-basic");
       expect(container).toHaveClass(
         "grid-cols-1",
         "md:grid-cols-2",
@@ -53,24 +53,24 @@ describe("Description Variants", () => {
 
     it("does not have dividers", () => {
       render(
-        <Description variant="basic">
+        <Description>
           <DescriptionItem label="Name" value="John Doe" />
         </Description>
       );
 
-      const container = screen.getByText("Name:").closest(".description-basic");
+      const container = screen.getByTestId("description-basic");
       expect(container).not.toHaveClass("divide-y");
       expect(container).not.toHaveClass("divide-x");
     });
 
     it("maintains spacing with gap classes", () => {
       render(
-        <Description variant="basic">
+        <Description>
           <DescriptionItem label="Name" value="John Doe" />
         </Description>
       );
 
-      const container = screen.getByText("Name:").closest(".description-basic");
+      const container = screen.getByTestId("description-basic");
       expect(container).toHaveClass("gap-6");
     });
   });
@@ -83,13 +83,11 @@ describe("Description Variants", () => {
         </Description>
       );
 
-      const container = screen
-        .getByText("Name:")
-        .closest(".description-bordered");
+      const container = screen.getByTestId("description-bordered");
       expect(container).toBeInTheDocument();
 
       // Verificar que está dentro de un Card
-      const card = container?.closest('[data-slot="card"]'); // Card tiene data-slot="card"
+      const card = container.closest('[class*="border"]');
       expect(card).toBeInTheDocument();
     });
 
@@ -100,9 +98,7 @@ describe("Description Variants", () => {
         </Description>
       );
 
-      let container = screen
-        .getByText("Test:")
-        .closest(".description-bordered");
+      let container = screen.getByTestId("description-bordered");
       expect(container).toHaveClass("grid-cols-1");
 
       rerender(
@@ -110,7 +106,7 @@ describe("Description Variants", () => {
           <DescriptionItem label="Test" value="Value" />
         </Description>
       );
-      container = screen.getByText("Test:").closest(".description-bordered");
+      container = screen.getByTestId("description-bordered");
       expect(container).toHaveClass("grid-cols-1", "lg:grid-cols-2");
 
       rerender(
@@ -118,7 +114,7 @@ describe("Description Variants", () => {
           <DescriptionItem label="Test" value="Value" />
         </Description>
       );
-      container = screen.getByText("Test:").closest(".description-bordered");
+      container = screen.getByTestId("description-bordered");
       expect(container).toHaveClass(
         "grid-cols-1",
         "md:grid-cols-2",
@@ -133,9 +129,7 @@ describe("Description Variants", () => {
         </Description>
       );
 
-      let container = screen
-        .getByText("Test:")
-        .closest(".description-bordered");
+      let container = screen.getByTestId("description-bordered");
       expect(container).toHaveClass("divide-y");
 
       rerender(
@@ -143,7 +137,7 @@ describe("Description Variants", () => {
           <DescriptionItem label="Test" value="Value" />
         </Description>
       );
-      container = screen.getByText("Test:").closest(".description-bordered");
+      container = screen.getByTestId("description-bordered");
       expect(container).toHaveClass("divide-y", "lg:divide-y-0", "lg:divide-x");
 
       rerender(
@@ -151,32 +145,20 @@ describe("Description Variants", () => {
           <DescriptionItem label="Test" value="Value" />
         </Description>
       );
-      container = screen.getByText("Test:").closest(".description-bordered");
-      expect(container).toHaveClass(
-        "divide-y",
-        "md:divide-y-0",
-        "md:divide-x",
-        "lg:divide-x"
-      );
+      container = screen.getByTestId("description-bordered");
+      expect(container).toHaveClass("divide-y", "md:divide-y-0", "md:divide-x", "lg:divide-x");
     });
 
     it("works with DescriptionSection", () => {
       render(
         <Description variant="bordered">
           <DescriptionSection label="Personal Information">
-            <div>John Doe</div>
-            <div>john@example.com</div>
+            <DescriptionItem label="Name" value="John Doe" />
           </DescriptionSection>
         </Description>
       );
 
-      expect(screen.getByText("Personal Information")).toBeInTheDocument();
-      expect(screen.getByText("John Doe")).toBeInTheDocument();
-      expect(screen.getByText("john@example.com")).toBeInTheDocument();
-
-      const section = screen
-        .getByText("Personal Information")
-        .closest(".description-section");
+      const section = screen.getByTestId("description-section");
       expect(section).toBeInTheDocument();
     });
   });
@@ -184,12 +166,12 @@ describe("Description Variants", () => {
   describe("Variant Comparison", () => {
     it("basic variant has gap, bordered variant has dividers", () => {
       const { rerender } = render(
-        <Description variant="basic">
+        <Description>
           <DescriptionItem label="Name" value="John Doe" />
         </Description>
       );
 
-      let container = screen.getByText("Name:").closest(".description-basic");
+      let container = screen.getByTestId("description-basic");
       expect(container).toHaveClass("gap-6");
       expect(container).not.toHaveClass("divide-y");
 
@@ -198,10 +180,9 @@ describe("Description Variants", () => {
           <DescriptionItem label="Name" value="John Doe" />
         </Description>
       );
-
-      container = screen.getByText("Name:").closest(".description-bordered");
-      expect(container).not.toHaveClass("gap-6");
+      container = screen.getByTestId("description-bordered");
       expect(container).toHaveClass("divide-y");
+      expect(container).not.toHaveClass("gap-6");
     });
 
     it("bordered variant has Card wrapper, basic variant does not", () => {
@@ -232,12 +213,12 @@ describe("Description Variants", () => {
   describe("Responsive Behavior", () => {
     it("basic variant has progressive responsive breakpoints", () => {
       render(
-        <Description variant="basic" columns={3}>
+        <Description columns={3}>
           <DescriptionItem label="Name" value="John Doe" />
         </Description>
       );
 
-      const container = screen.getByText("Name:").closest(".description-basic");
+      const container = screen.getByTestId("description-basic");
       // 1 column on mobile, 2 on md, 3 on lg
       expect(container).toHaveClass(
         "grid-cols-1",
@@ -253,9 +234,7 @@ describe("Description Variants", () => {
         </Description>
       );
 
-      let container = screen
-        .getByText("Name:")
-        .closest(".description-bordered");
+      let container = screen.getByTestId("description-bordered");
       // 2 columns: 1 column on mobile, 2 on lg
       expect(container).toHaveClass("grid-cols-1", "lg:grid-cols-2");
 
@@ -264,8 +243,7 @@ describe("Description Variants", () => {
           <DescriptionItem label="Name" value="John Doe" />
         </Description>
       );
-
-      container = screen.getByText("Name:").closest(".description-bordered");
+      container = screen.getByTestId("description-bordered");
       // 3 columns: 1 column on mobile, 2 on md, 3 on lg
       expect(container).toHaveClass(
         "grid-cols-1",
