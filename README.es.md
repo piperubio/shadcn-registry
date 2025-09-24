@@ -75,16 +75,55 @@ Un componente flexible para mostrar información estructurada con dos variantes 
 npx shadcn@latest add description --registry-url https://registry.piperubio.dev
 ```
 
-**Uso básico:**
+**Uso básico (objeto de columnas responsivas):**
 ```tsx
 import { Description, DescriptionItem } from "@/components/description/description";
 
-<Description title="User Profile" columns={3} variant="basic">
+<Description
+  title="User Profile"
+  // 1 columna base, 2 desde md, 3 desde lg
+  columns={{ base: 1, md: 2, lg: 3 }}
+  variant="basic"
+>
   <DescriptionItem label="Name" value="John Doe" />
   <DescriptionItem label="Email" value="john@example.com" />
   <DescriptionItem label="Role" value={<Badge>Admin</Badge>} />
 </Description>
 ```
+
+**Ejemplo variante bordered:**
+```tsx
+<Description
+  title="Service Configuration"
+  variant="bordered"
+  columns={{ base: 1, md: 2, lg: 3 }}
+>
+  <DescriptionItem label="Service" value="Cloud DB" />
+  <DescriptionItem label="Status" value={<span className="text-green-600">Active</span>} />
+  <DescriptionItem label="Region" value="US-East" />
+  <DescriptionItem label="Plan" value="Pro" span={2} />
+  <DescriptionItem label="Notes" value="Descripción extendida" span={3} />
+</Description>
+```
+
+**API de `columns`:**
+```ts
+columns?: {
+  base?: 1 | 2 | 3; // default 1
+  sm?: 1 | 2 | 3;
+  md?: 1 | 2 | 3; // default 2
+  lg?: 1 | 2 | 3; // default 3
+  xl?: 1 | 2 | 3;
+  "2xl"?: 1 | 2 | 3;
+}
+```
+
+Si omites `columns` se usa `{ base:1, md:2, lg:3 }`.
+
+**Spanning:**
+`span` se limita automáticamente al máximo de columnas definidas. Ej: `span={3}` en un layout cuyo máximo es 2 → `col-span-2` (pero mantiene `data-span="3"`).
+
+> Idea futura: spans responsivos (ej: `{ base:1, md:2, lg:3 }`).
 
 ## 🛠️ Desarrollo
 

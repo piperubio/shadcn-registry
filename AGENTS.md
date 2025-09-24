@@ -26,3 +26,8 @@
 - Class variance authority (cva) for component variants
 - Vitest + Testing Library for tests with proper describe/it structure
 - Path alias `@/` for root-level imports
+
+## Instructions
+
+- NOT RUN TESTS WITHOUT USER REQUEST
+- NOT RUN DEV SERVER WITHOUT USER REQUEST

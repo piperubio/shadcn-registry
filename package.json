@@ -9,7 +9,15 @@
     "url": "https://github.com/piperubio/shadcn-registry.git"
   },
   "homepage": "https://registry.piperubio.dev",
-  "keywords": ["shadcn", "ui", "components", "react", "tailwind", "registry", "piperubio"],
+  "keywords": [
+    "shadcn",
+    "ui",
+    "components",
+    "react",
+    "tailwind",
+    "registry",
+    "piperubio"
+  ],
   "private": true,
   "scripts": {
     "build": "next build",
@@ -39,6 +47,8 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^5.0.0",
+    "eslint": "^9.36.0",
+    "eslint-config-next": "15.5.4",
     "jsdom": "^26.1.0",
     "postcss": "^8.5",
     "tailwindcss": "^4.1.9",

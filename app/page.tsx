@@ -1,4 +1,4 @@
-import { Code2, Palette, Layout, FileText, Zap } from "lucide-react";
+import { Code2, Palette, Layout, FileText, Zap, Grid3x3, Columns, Monitor, Settings, Database, Users } from "lucide-react";
 import {
   Description,
   DescriptionItem,
@@ -25,36 +25,36 @@ export default function HomePage() {
           </div>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Custom shadcn/ui component registry created and maintained by piperubio.
-            Reusable React components, well-documented and fully typed.
+            Reusable React components with advanced features like unlimited columns, layout options, and smart spanning.
           </p>
           <div className="flex items-center justify-center gap-2 pt-4">
             <Badge variant="secondary">piperubio</Badge>
             <Badge variant="secondary">shadcn/ui</Badge>
             <Badge variant="secondary">TypeScript</Badge>
             <Badge variant="secondary">Responsive</Badge>
-            <Badge variant="secondary">Open Source</Badge>
+            <Badge variant="secondary">Unlimited Columns</Badge>
+            <Badge variant="secondary">Layout Options</Badge>
           </div>
         </div>
 
-        {/* Quick Overview */}
-        <div className="grid md:grid-cols-2 gap-6">
+        {/* Feature Overview */}
+        <div className="grid md:grid-cols-3 gap-6">
           <Card>
             <CardHeader>
               <div className="flex items-center gap-2">
                 <Layout className="w-5 h-5 text-blue-500" />
-                <CardTitle>Basic Variant</CardTitle>
+                <CardTitle>Flexible Layouts</CardTitle>
               </div>
               <CardDescription>
-                Clean, minimal layout for displaying key-value pairs without
-                borders
+                Support for horizontal and vertical layouts with unlimited columns
               </CardDescription>
             </CardHeader>
             <CardContent>
               <ul className="text-sm space-y-1 text-muted-foreground">
-                <li>• Responsive grid layout (1-3 columns)</li>
-                <li>• Perfect for user profiles and simple data</li>
-                <li>• Minimal visual weight</li>
-                <li>• Support for span across columns</li>
+                <li>• Horizontal layout (default grid)</li>
+                <li>• Vertical layout (stacked items)</li>
+                <li>• Up to 12 columns (no more 3-column limit)</li>
+                <li>• Smart responsive behavior</li>
               </ul>
             </CardContent>
           </Card>
@@ -62,84 +62,79 @@ export default function HomePage() {
           <Card>
             <CardHeader>
               <div className="flex items-center gap-2">
-                <Palette className="w-5 h-5 text-green-500" />
-                <CardTitle>Bordered Variant</CardTitle>
+                <Grid3x3 className="w-5 h-5 text-green-500" />
+                <CardTitle>Advanced Spanning</CardTitle>
               </div>
               <CardDescription>
-                Structured table format with borders for complex data
-                presentation
+                Flexible column spanning with "filled" and responsive options
               </CardDescription>
             </CardHeader>
             <CardContent>
               <ul className="text-sm space-y-1 text-muted-foreground">
-                <li>• Table-like structure with clear divisions</li>
+                <li>• Numeric spans (1, 2, 3, 4...12)</li>
+                <li>• "filled" span (remaining columns)</li>
+                <li>• Responsive span objects</li>
+                <li>• Auto-clamping to available columns</li>
+              </ul>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <div className="flex items-center gap-2">
+                <Palette className="w-5 h-5 text-purple-500" />
+                <CardTitle>Two Variants</CardTitle>
+              </div>
+              <CardDescription>
+                Clean basic layout and structured bordered format
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ul className="text-sm space-y-1 text-muted-foreground">
+                <li>• Basic: minimal, clean design</li>
+                <li>• Bordered: structured table format</li>
                 <li>• Support for nested sections</li>
-                <li>• Full column spanning (1-3 columns)</li>
-                <li>• Ideal for detailed configurations</li>
+                <li>• Rich ReactNode children support</li>
               </ul>
             </CardContent>
           </Card>
         </div>
 
-        {/* Basic Variant Documentation */}
+        {/* Layout Examples Section */}
         <section className="space-y-6">
           <div className="flex items-center gap-3">
             <Layout className="w-6 h-6 text-blue-500" />
-            <h2 className="text-3xl font-bold">Basic Variant</h2>
+            <h2 className="text-3xl font-bold">Layout Options</h2>
           </div>
 
-          {/* Basic Example */}
+          {/* Horizontal Layout Examples */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Zap className="w-4 h-4" />
-                Basic Usage (3 Columns)
+                <Columns className="w-4 h-4" />
+                Horizontal Layout (Default)
               </CardTitle>
               <CardDescription>
-                Simple user information display with 3-column support
+                Items arranged in a responsive grid - perfect for traditional key-value displays
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
-              <Description title="User Profile" columns={3} variant="basic">
-                <DescriptionItem label="Name" value="John Doe" />
-                <DescriptionItem label="Email" value="john@example.com" />
-                <DescriptionItem
-                  label="Role"
-                  value={<Badge>Administrator</Badge>}
-                />
-                <DescriptionItem
-                  label="Status"
-                  span={2}
-                  value={
-                    <span className="text-green-600 bg-green-50 px-2 py-1 rounded">
-                      Active (spans 2 columns)
-                    </span>
-                  }
-                />
-                <DescriptionItem
-                  label="Bio"
-                  value={
-                    <span className="bg-blue-50 px-2 py-1 rounded">
-                      Full-stack developer with 5+ years of experience (spans 3
-                      columns)
-                    </span>
-                  }
-                  span={3}
-                />
-                <DescriptionItem
-                  label="Department"
-                  value="Engineering"
-                  span={1}
-                />
-                <DescriptionItem
-                  label="Location"
-                  value={
-                    <span className="bg-yellow-50 px-2 py-1 rounded">
-                      San Francisco, CA (spans 2 columns)
-                    </span>
-                  }
-                  span={2}
-                />
+              <Description layout="horizontal" columns={{ base: 1, md: 2, lg: 3 }}>
+                <DescriptionItem label="Name">Juan Pérez</DescriptionItem>
+                <DescriptionItem label="Email">juan@ejemplo.com</DescriptionItem>
+                <DescriptionItem label="Phone">+1 234 567 8900</DescriptionItem>
+                <DescriptionItem label="Address" span="filled">
+                  <span className="bg-blue-50 px-2 py-1 rounded">
+                    123 Calle Principal, Ciudad, País (spans remaining columns)
+                  </span>
+                </DescriptionItem>
+                <DescriptionItem label="Department">Engineering</DescriptionItem>
+                <DescriptionItem label="Role" span={2}>
+                  <Badge>Senior Developer</Badge>
+                  <Badge>Senior Developer</Badge>
+                  <Badge>Senior Developer</Badge>
+                  <Badge>Senior Developer</Badge>
+                </DescriptionItem>
               </Description>
 
               <div className="bg-muted p-4 rounded-lg">
@@ -148,73 +143,43 @@ export default function HomePage() {
                   <span className="font-medium">Code</span>
                 </div>
                 <pre className="text-sm overflow-x-auto">
-                  {`<Description title="User Profile" columns={3} variant="basic">
-  <DescriptionItem label="Name" value="John Doe" />
-  <DescriptionItem label="Email" value="john@example.com" />
-  <DescriptionItem label="Role" value={<Badge>Administrator</Badge>} />
-  <DescriptionItem 
-    label="Status" 
-    span={2}
-    value={<span className="text-green-600">Active (spans 2 columns)</span>} 
-  />
-  <DescriptionItem 
-    label="Bio" 
-    value="Full-stack developer with 5+ years of experience (spans 3 columns)"
-    span={3}
-  />
-  <DescriptionItem label="Department" value="Engineering" />
-  <DescriptionItem 
-    label="Location" 
-    value="San Francisco, CA (spans 2 columns)"
-    span={2}
-  />
+{`<Description layout="horizontal" columns={{ base: 1, md: 2, lg: 3 }}>
+  <DescriptionItem label="Name">Juan Pérez</DescriptionItem>
+  <DescriptionItem label="Email">juan@ejemplo.com</DescriptionItem>
+  <DescriptionItem label="Phone">+1 234 567 8900</DescriptionItem>
+  <DescriptionItem label="Address" span="filled">
+    123 Calle Principal, Ciudad, País (spans remaining columns)
+  </DescriptionItem>
+  <DescriptionItem label="Department">Engineering</DescriptionItem>
+  <DescriptionItem label="Role"><Badge>Senior Developer</Badge></DescriptionItem>
 </Description>`}
                 </pre>
               </div>
             </CardContent>
           </Card>
 
-          {/* 2 Column Example */}
+          {/* Vertical Layout Examples */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Zap className="w-4 h-4" />
-                2-Column Layout Test
+                <Monitor className="w-4 h-4" />
+                Vertical Layout
               </CardTitle>
               <CardDescription>
-                Testing the columns={2} behavior to verify grid layout
+                Items stacked vertically - ideal for detailed information and mobile-first design
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
-              <Description
-                title="Contact Information"
-                columns={2}
-                variant="basic"
-              >
-                <DescriptionItem label="Name" value="Jane Smith" />
-                <DescriptionItem label="Email" value="jane@company.com" />
-                <DescriptionItem label="Phone" value="+1 (555) 123-4567" />
-                <DescriptionItem
-                  label="Address"
-                  value={
-                    <span className="bg-purple-50 px-2 py-1 rounded">
-                      123 Main St, Anytown, USA (spans 2 columns)
-                    </span>
-                  }
-                  span={2}
-                />
-                <DescriptionItem
-                  label="Bio"
-                  value={
-                    <span className="bg-red-50 px-2 py-1 rounded">
-                      Marketing professional with extensive experience in
-                      digital campaigns (span=3 but should be limited to 2)
-                    </span>
-                  }
-                  span={3}
-                />
-                <DescriptionItem label="Department" value="Marketing" />
-                <DescriptionItem label="Position" value="Manager" />
+              <Description layout="vertical" columns={{ base: 1, md: 2, lg: 3 }}>
+                <DescriptionItem label="Name">Juan Pérez</DescriptionItem>
+                <DescriptionItem label="Email">juan@ejemplo.com</DescriptionItem>
+                <DescriptionItem label="Phone">+1 234 567 8900</DescriptionItem>
+                <DescriptionItem label="Bio" span="filled">
+                  <span className="bg-green-50 px-2 py-1 rounded">
+                    Desarrollador full-stack con experiencia en React, Node.js y bases de datos. 
+                    Especializado en arquitecturas modernas y desarrollo escalable.
+                  </span>
+                </DescriptionItem>
               </Description>
 
               <div className="bg-muted p-4 rounded-lg">
@@ -223,22 +188,127 @@ export default function HomePage() {
                   <span className="font-medium">Code</span>
                 </div>
                 <pre className="text-sm overflow-x-auto">
-                  {`<Description title="Contact Information" columns={2} variant="basic">
-  <DescriptionItem label="Name" value="Jane Smith" />
-  <DescriptionItem label="Email" value="jane@company.com" />
-  <DescriptionItem label="Phone" value="+1 (555) 123-4567" />
-  <DescriptionItem 
-    label="Address" 
-    value="123 Main St, Anytown, USA (spans 2 columns)"
-    span={2}
-  />
-  <DescriptionItem 
-    label="Bio" 
-    value="Marketing professional (span=3 but limited to 2)"
-    span={3}
-  />
-  <DescriptionItem label="Department" value="Marketing" />
-  <DescriptionItem label="Position" value="Manager" />
+{`<Description layout="vertical" columns={{ base: 1, md: 2, lg: 3 }}>
+  <DescriptionItem label="Name">Juan Pérez</DescriptionItem>
+  <DescriptionItem label="Email">juan@ejemplo.com</DescriptionItem>
+  <DescriptionItem label="Phone">+1 234 567 8900</DescriptionItem>
+  <DescriptionItem label="Bio">
+    Desarrollador full-stack con experiencia en React, Node.js y bases de datos.
+  </DescriptionItem>
+</Description>`}
+                </pre>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Horizontal Bordered Layout */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Database className="w-4 h-4" />
+                Horizontal Layout - Bordered
+              </CardTitle>
+              <CardDescription>
+                Traditional grid layout with borders - perfect for structured data presentation
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <Description layout="horizontal" variant="bordered" columns={{ base: 1, md: 2, lg: 3 }}>
+                <DescriptionItem label="Server">Production Web Server</DescriptionItem>
+                <DescriptionItem label="Environment">
+                  <Badge variant="outline">Production</Badge>
+                </DescriptionItem>
+                <DescriptionItem label="Status">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <span>Healthy</span>
+                  </div>
+                </DescriptionItem>
+                <DescriptionItem label="CPU Usage">65%</DescriptionItem>
+                <DescriptionItem label="Memory">8.2 GB / 16 GB</DescriptionItem>
+                <DescriptionItem label="Uptime">45 days</DescriptionItem>
+                <DescriptionItem label="Configuration" span="filled">
+                  <div className="w-full">
+                    <span className="bg-gray-50 px-3 py-2 rounded border block w-full">
+                      nginx 1.24, Node.js 20.x, PM2 cluster mode (spans remaining columns)
+                    </span>
+                  </div>
+                </DescriptionItem>
+              </Description>
+
+              <div className="bg-muted p-4 rounded-lg">
+                <div className="flex items-center gap-2 mb-2">
+                  <Code2 className="w-4 h-4" />
+                  <span className="font-medium">Code</span>
+                </div>
+                <pre className="text-sm overflow-x-auto">
+{`<Description layout="horizontal" variant="bordered" columns={{ base: 1, md: 2, lg: 3 }}>
+  <DescriptionItem label="Server">Production Web Server</DescriptionItem>
+  <DescriptionItem label="Environment"><Badge variant="outline">Production</Badge></DescriptionItem>
+  <DescriptionItem label="Status">
+    <div className="flex items-center gap-2">
+      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+      <span>Healthy</span>
+    </div>
+  </DescriptionItem>
+  <DescriptionItem label="CPU Usage">65%</DescriptionItem>
+  <DescriptionItem label="Memory">8.2 GB / 16 GB</DescriptionItem>
+  <DescriptionItem label="Uptime">45 days</DescriptionItem>
+  <DescriptionItem label="Configuration" span="filled">
+    <div className="w-full">
+      <span className="bg-gray-50 px-3 py-2 rounded border block w-full">
+        nginx 1.24, Node.js 20.x, PM2 cluster mode (spans remaining columns)
+      </span>
+    </div>
+  </DescriptionItem>
+</Description>`}
+                </pre>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Vertical Bordered Layout */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Database className="w-4 h-4" />
+                Vertical Layout - Bordered
+              </CardTitle>
+              <CardDescription>
+                Structured vertical layout with borders - perfect for configuration details
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <Description layout="vertical" variant="bordered" columns={{ base: 1, md: 2, lg: 3 }}>
+                <DescriptionItem label="Service">Cloud Database</DescriptionItem>
+                <DescriptionItem label="Plan">
+                  <Badge variant="outline">Professional</Badge>
+                </DescriptionItem>
+                <DescriptionItem label="Status">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <span>Active</span>
+                  </div>
+                </DescriptionItem>
+                <DescriptionItem label="Region" span="filled">US East (Virginia)</DescriptionItem>
+              </Description>
+
+              <div className="bg-muted p-4 rounded-lg">
+                <div className="flex items-center gap-2 mb-2">
+                  <Code2 className="w-4 h-4" />
+                  <span className="font-medium">Code</span>
+                </div>
+                <pre className="text-sm overflow-x-auto">
+{`<Description layout="vertical" variant="bordered" columns={{ base: 1, md: 2, lg: 3 }}>
+  <DescriptionItem label="Service">Cloud Database</DescriptionItem>
+  <DescriptionItem label="Plan"><Badge variant="outline">Professional</Badge></DescriptionItem>
+  <DescriptionItem label="Status">
+    <div className="flex items-center gap-2">
+      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+      <span>Active</span>
+    </div>
+  </DescriptionItem>
+  <DescriptionItem label="Region">US East (Virginia)</DescriptionItem>
 </Description>`}
                 </pre>
               </div>
@@ -246,101 +316,300 @@ export default function HomePage() {
           </Card>
         </section>
 
-        {/* Bordered Variant Documentation */}
+        {/* Advanced Spanning Examples */}
         <section className="space-y-6">
           <div className="flex items-center gap-3">
-            <Palette className="w-6 h-6 text-green-500" />
-            <h2 className="text-3xl font-bold">Bordered Variant</h2>
+            <Grid3x3 className="w-6 h-6 text-green-500" />
+            <h2 className="text-3xl font-bold">Advanced Spanning & Unlimited Columns</h2>
           </div>
 
-          {/* Bordered Example */}
+          {/* "Filled" Span Examples */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Zap className="w-4 h-4" />
-                Advanced Usage
+                "Filled" Span Usage
               </CardTitle>
               <CardDescription>
-                Complex service configuration with 3-column support and sections
+                Using span="filled" to occupy all remaining columns in the current row
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <Description layout="horizontal" columns={{ base: 1, md: 3, lg: 4 }}>
+                <DescriptionItem label="Name">María González</DescriptionItem>
+                <DescriptionItem label="Email">maria@company.com</DescriptionItem>
+                <DescriptionItem label="Department">Marketing</DescriptionItem>
+                <DescriptionItem label="Full Bio" span="filled">
+                  <span className="bg-amber-50 my-8 px-3 py-2 rounded border">
+                    Marketing professional with 8+ years of experience in digital campaigns, 
+                    brand management, and team leadership. Specialized in B2B marketing strategies 
+                    and customer acquisition. (This spans all remaining columns automatically)
+                  </span>
+                </DescriptionItem>
+                <DescriptionItem label="Skills">React, TypeScript</DescriptionItem>
+                <DescriptionItem label="Location">Barcelona</DescriptionItem>
+              </Description>
+
+              <div className="bg-muted p-4 rounded-lg">
+                <div className="flex items-center gap-2 mb-2">
+                  <Code2 className="w-4 h-4" />
+                  <span className="font-medium">Code</span>
+                </div>
+                <pre className="text-sm overflow-x-auto">
+{`<Description layout="horizontal" columns={{ base: 1, md: 3, lg: 4 }}>
+  <DescriptionItem label="Name">María González</DescriptionItem>
+  <DescriptionItem label="Email">maria@company.com</DescriptionItem>
+  <DescriptionItem label="Department">Marketing</DescriptionItem>
+  <DescriptionItem label="Full Bio" span="filled">
+    Marketing professional with 8+ years of experience... (spans remaining columns)
+  </DescriptionItem>
+  <DescriptionItem label="Skills">React, TypeScript</DescriptionItem>
+  <DescriptionItem label="Location">Barcelona</DescriptionItem>
+</Description>`}
+                </pre>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Extended Column Support */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Grid3x3 className="w-4 h-4" />
+                Extended Column Support (Up to 12 Columns)
+              </CardTitle>
+              <CardDescription>
+                Demonstrating 6-column layout with various spans - no more 3-column limit!
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <Description layout="horizontal" columns={{ base: 2, md: 4, lg: 6 }}>
+                <DescriptionItem label="ID">USR001</DescriptionItem>
+                <DescriptionItem label="Name">Alex Johnson</DescriptionItem>
+                <DescriptionItem label="Email">alex@tech.com</DescriptionItem>
+                <DescriptionItem label="Phone">+1-555-0123</DescriptionItem>
+                <DescriptionItem label="Department">Engineering</DescriptionItem>
+                <DescriptionItem label="Team">Frontend</DescriptionItem>
+                
+                <DescriptionItem label="Address" span={4}>
+                  <span className="bg-indigo-50 px-2 py-1 rounded">
+                    456 Tech Street, Innovation District, Silicon Valley, CA 94043 (spans 4 columns)
+                  </span>
+                </DescriptionItem>
+                <DescriptionItem label="Status" span={2}>
+                  <Badge className="bg-green-100 text-green-800">Active Employee (spans 2 columns)</Badge>
+                </DescriptionItem>
+
+                <DescriptionItem label="Skills" span="filled">
+                  <div className="flex flex-wrap gap-1">
+                    <Badge variant="secondary">React</Badge>
+                    <Badge variant="secondary">TypeScript</Badge>
+                    <Badge variant="secondary">Next.js</Badge>
+                    <Badge variant="secondary">Tailwind</Badge>
+                    <Badge variant="secondary">Node.js</Badge>
+                    <Badge variant="secondary">PostgreSQL</Badge>
+                    <span className="text-muted-foreground ml-2">(spans all remaining columns)</span>
+                  </div>
+                </DescriptionItem>
+              </Description>
+
+              <div className="bg-muted p-4 rounded-lg">
+                <div className="flex items-center gap-2 mb-2">
+                  <Code2 className="w-4 h-4" />
+                  <span className="font-medium">Code</span>
+                </div>
+                <pre className="text-sm overflow-x-auto">
+{`<Description layout="horizontal" columns={{ base: 2, md: 4, lg: 6 }}>
+  <DescriptionItem label="ID">USR001</DescriptionItem>
+  <DescriptionItem label="Name">Alex Johnson</DescriptionItem>
+  <DescriptionItem label="Email">alex@tech.com</DescriptionItem>
+  <DescriptionItem label="Phone">+1-555-0123</DescriptionItem>
+  <DescriptionItem label="Department">Engineering</DescriptionItem>
+  <DescriptionItem label="Team">Frontend</DescriptionItem>
+  
+  <DescriptionItem label="Address" span={4}>
+    456 Tech Street, Innovation District, Silicon Valley, CA 94043 (spans 4 columns)
+  </DescriptionItem>
+  <DescriptionItem label="Status" span={2}>
+    <Badge>Active Employee (spans 2 columns)</Badge>
+  </DescriptionItem>
+
+  <DescriptionItem label="Skills" span="filled">
+    <div className="flex flex-wrap gap-1">
+      <Badge>React</Badge>
+      <Badge>TypeScript</Badge>
+      {/* ... more badges */}
+    </div>
+  </DescriptionItem>
+</Description>`}
+                </pre>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Responsive Spanning */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Settings className="w-4 h-4" />
+                Responsive Spanning with Breakpoint Objects
+              </CardTitle>
+              <CardDescription>
+                Using responsive span objects to control spanning across different screen sizes
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <Description layout="horizontal" columns={{ base: 1, md: 3, lg: 5 }}>
+                <DescriptionItem label="Project">E-commerce Platform</DescriptionItem>
+                <DescriptionItem label="Status">
+                  <Badge className="bg-blue-100 text-blue-800">In Progress</Badge>
+                </DescriptionItem>
+                <DescriptionItem label="Priority">High</DescriptionItem>
+                <DescriptionItem 
+                  label="Description" 
+                  span={{ base: "filled", md: 2, lg: 3 }}
+                >
+                  <span className="bg-yellow-50 px-2 py-1 rounded border">
+                    Modern e-commerce solution with advanced features (responsive span: base=filled, md=2, lg=3)
+                  </span>
+                </DescriptionItem>
+                <DescriptionItem label="Lead">Sarah Wilson</DescriptionItem>
+                <DescriptionItem 
+                  label="Technologies" 
+                  span={{ base: "filled", md: "filled", lg: 2 }}
+                >
+                  <div className="flex flex-wrap gap-1">
+                    <Badge variant="outline">Next.js</Badge>
+                    <Badge variant="outline">Prisma</Badge>
+                    <Badge variant="outline">Stripe</Badge>
+                    <span className="text-muted-foreground ml-2">(responsive: base/md=filled, lg=2)</span>
+                  </div>
+                </DescriptionItem>
+                <DescriptionItem label="Budget">$50K</DescriptionItem>
+                <DescriptionItem label="Timeline">Q1 2025</DescriptionItem>
+                <DescriptionItem label="Team Size">5 developers</DescriptionItem>
+              </Description>
+
+              <div className="bg-muted p-4 rounded-lg">
+                <div className="flex items-center gap-2 mb-2">
+                  <Code2 className="w-4 h-4" />
+                  <span className="font-medium">Code</span>
+                </div>
+                <pre className="text-sm overflow-x-auto">
+{`<Description layout="horizontal" columns={{ base: 1, md: 3, lg: 5 }}>
+  <DescriptionItem label="Project">E-commerce Platform</DescriptionItem>
+  <DescriptionItem label="Status"><Badge>In Progress</Badge></DescriptionItem>
+  <DescriptionItem label="Priority">High</DescriptionItem>
+  
+  {/* Responsive spanning: base=filled, md=2, lg=3 */}
+  <DescriptionItem 
+    label="Description" 
+    span={{ base: "filled", md: 2, lg: 3 }}
+  >
+    Modern e-commerce solution with advanced features
+  </DescriptionItem>
+  
+  <DescriptionItem label="Lead">Sarah Wilson</DescriptionItem>
+  
+  {/* Responsive spanning: base/md=filled, lg=2 */}
+  <DescriptionItem 
+    label="Technologies" 
+    span={{ base: "filled", md: "filled", lg: 2 }}
+  >
+    <div className="flex flex-wrap gap-1">
+      <Badge>Next.js</Badge>
+      <Badge>Prisma</Badge>
+      <Badge>Stripe</Badge>
+    </div>
+  </DescriptionItem>
+  
+  <DescriptionItem label="Budget">$50K</DescriptionItem>
+  <DescriptionItem label="Timeline">Q1 2025</DescriptionItem>
+  <DescriptionItem label="Team Size">5 developers</DescriptionItem>
+</Description>`}
+                </pre>
+              </div>
+            </CardContent>
+          </Card>
+        </section>
+
+        {/* Bordered Variant Examples */}
+        <section className="space-y-6">
+          <div className="flex items-center gap-3">
+            <Palette className="w-6 h-6 text-purple-500" />
+            <h2 className="text-3xl font-bold">Bordered Variant Examples</h2>
+          </div>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Database className="w-4 h-4" />
+                Complex Service Configuration
+              </CardTitle>
+              <CardDescription>
+                Detailed service configuration with sections and advanced spanning in bordered format
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <Description
-                title="Service Details"
-                columns={3}
                 variant="bordered"
+                columns={{ base: 1, md: 2, lg: 4 }}
               >
-                <DescriptionItem label="Service" value="Cloud Database" />
-                <DescriptionItem
-                  label="Plan"
-                  value={<Badge variant="outline">Professional</Badge>}
-                />
-                <DescriptionItem
-                  label="Status"
-                  value={
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span>Active</span>
-                    </div>
-                  }
-                />
-                <DescriptionItem label="Region" value="US East (Virginia)" />
-                <DescriptionItem
-                  label="Created"
-                  value="2024-01-15 10:30:00"
-                  span={2}
-                />
-                {/* <DescriptionItem label="Monthly Cost" value="$99.00" /> */}
+                <DescriptionItem label="Service Name">Advanced Analytics Service</DescriptionItem>
+                <DescriptionItem label="Plan">
+                  <Badge variant="outline">Enterprise</Badge>
+                </DescriptionItem>
+                <DescriptionItem label="Region">US West (Oregon)</DescriptionItem>
+                <DescriptionItem label="Status">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <span>Running</span>
+                  </div>
+                </DescriptionItem>
 
-                {/* Full-width Technical Specs section using span={3} */}
-                <DescriptionItem
-                  label="Technical Specifications"
-                  span={3}
-                  value={
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                      <div>
-                        <div className="font-medium">Database</div>
-                        <div className="text-muted-foreground">
-                          PostgreSQL 14
-                        </div>
-                      </div>
-                      <div>
-                        <div className="font-medium">Storage</div>
-                        <div className="text-muted-foreground">100 GB SSD</div>
-                      </div>
-                      <div>
-                        <div className="font-medium">Memory</div>
-                        <div className="text-muted-foreground">8 GB RAM</div>
-                      </div>
-                      <div>
-                        <div className="font-medium">Connections</div>
-                        <div className="text-muted-foreground">200 max</div>
-                      </div>
-                      <div>
-                        <div className="font-medium">Backups</div>
-                        <div className="text-muted-foreground">
-                          Daily automated
-                        </div>
-                      </div>
-                      <div>
-                        <div className="font-medium">Replication</div>
-                        <div className="text-muted-foreground">3x factor</div>
-                      </div>
-                    </div>
-                  }
-                />
+                <DescriptionItem label="Created At" span={2}>
+                  2024-01-15 10:30:00 UTC (spans 2 columns)
+                </DescriptionItem>
+                <DescriptionItem label="Last Updated" span={2}>
+                  2024-09-20 14:22:15 UTC (spans 2 columns)
+                </DescriptionItem>
 
-                {/* Using DescriptionSection for grouped content */}
-                <DescriptionSection
-                  label="Configuration Details"
-                  className="col-span-full"
-                >
-                  <div className="space-y-1">
-                    <div>Data disk type: MongoDB</div>
-                    <div>Database version: 3.4</div>
-                    <div>Package: dds.mongo.mid</div>
-                    <div>Storage space: 10 GB</div>
-                    <div>Region: East China 1</div>
+                <DescriptionItem label="Technical Specifications" span="filled">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4 bg-gray-50 rounded">
+                    <div>
+                      <div className="font-medium text-sm">Database</div>
+                      <div className="text-muted-foreground text-sm">PostgreSQL 15</div>
+                    </div>
+                    <div>
+                      <div className="font-medium text-sm">Memory</div>
+                      <div className="text-muted-foreground text-sm">32 GB RAM</div>
+                    </div>
+                    <div>
+                      <div className="font-medium text-sm">Storage</div>
+                      <div className="text-muted-foreground text-sm">1 TB SSD</div>
+                    </div>
+                    <div>
+                      <div className="font-medium text-sm">CPU</div>
+                      <div className="text-muted-foreground text-sm">8 vCPUs</div>
+                    </div>
+                  </div>
+                </DescriptionItem>
+
+                <DescriptionSection label="Network Configuration">
+                  <div className="space-y-2 text-sm">
+                    <div><span className="font-medium">VPC:</span> vpc-12345678</div>
+                    <div><span className="font-medium">Subnet:</span> subnet-abcd1234</div>
+                    <div><span className="font-medium">Security Group:</span> sg-xyz789</div>
+                    <div><span className="font-medium">Load Balancer:</span> alb-production-main</div>
+                  </div>
+                </DescriptionSection>
+
+                <DescriptionSection label="Backup & Monitoring">
+                  <div className="space-y-2 text-sm">
+                    <div><span className="font-medium">Backup Schedule:</span> Daily at 2:00 AM UTC</div>
+                    <div><span className="font-medium">Retention:</span> 30 days</div>
+                    <div><span className="font-medium">Monitoring:</span> CloudWatch + Grafana</div>
+                    <div><span className="font-medium">Alerts:</span> Slack + Email notifications</div>
                   </div>
                 </DescriptionSection>
               </Description>
@@ -351,23 +620,35 @@ export default function HomePage() {
                   <span className="font-medium">Code</span>
                 </div>
                 <pre className="text-sm overflow-x-auto">
-                  {`<Description title="Service Details" columns={3} variant="bordered">
-  <DescriptionItem label="Service" value="Cloud Database" />
-  <DescriptionItem label="Plan" value={<Badge variant="outline">Professional</Badge>} />
-  <DescriptionItem label="Status" value={<StatusIndicator />} />
-  
-  {/* Full-width section spanning all 3 columns */}
-  <DescriptionItem 
-    label="Technical Specifications" 
-    span={3}
-    value={<TechnicalSpecsGrid />} 
-  />
+{`<Description variant="bordered" columns={{ base: 1, md: 2, lg: 4 }}>
+  <DescriptionItem label="Service Name">Advanced Analytics Service</DescriptionItem>
+  <DescriptionItem label="Plan"><Badge variant="outline">Enterprise</Badge></DescriptionItem>
+  <DescriptionItem label="Region">US West (Oregon)</DescriptionItem>
+  <DescriptionItem label="Status">
+    <div className="flex items-center gap-2">
+      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+      <span>Running</span>
+    </div>
+  </DescriptionItem>
 
-  {/* Using DescriptionSection for grouped content */}
-  <DescriptionSection label="Configuration Details">
-    <div className="space-y-1">
-      <div>Data disk type: MongoDB</div>
-      <div>Database version: 3.4</div>
+  <DescriptionItem label="Created At" span={2}>
+    2024-01-15 10:30:00 UTC (spans 2 columns)
+  </DescriptionItem>
+  <DescriptionItem label="Last Updated" span={2}>
+    2024-09-20 14:22:15 UTC (spans 2 columns)
+  </DescriptionItem>
+
+  <DescriptionItem label="Technical Specifications" span="filled">
+    <div className="grid grid-cols-4 gap-4">
+      <div><div className="font-medium">Database</div><div>PostgreSQL 15</div></div>
+      <div><div className="font-medium">Memory</div><div>32 GB RAM</div></div>
+      {/* ... more specs */}
+    </div>
+  </DescriptionItem>
+
+  <DescriptionSection label="Network Configuration">
+    <div className="space-y-2">
+      <div><span className="font-medium">VPC:</span> vpc-12345678</div>
       {/* ... more config */}
     </div>
   </DescriptionSection>
@@ -380,7 +661,7 @@ export default function HomePage() {
 
         {/* API Reference */}
         <section className="space-y-6">
-          <h2 className="text-3xl font-bold">Unified API Reference</h2>
+          <h2 className="text-3xl font-bold">Complete API Reference</h2>
 
           <Card>
             <CardHeader>
@@ -399,23 +680,21 @@ export default function HomePage() {
                     </div>
                     <div className="grid grid-cols-4 gap-4 py-2">
                       <code>variant</code>
-                      <span className="text-muted-foreground">
-                        "basic" | "bordered"
-                      </span>
+                      <span className="text-muted-foreground">"basic" | "bordered"</span>
                       <span className="text-muted-foreground">"basic"</span>
                       <span>Visual style variant</span>
                     </div>
                     <div className="grid grid-cols-4 gap-4 py-2">
-                      <code>columns</code>
-                      <span className="text-muted-foreground">1 | 2 | 3</span>
-                      <span className="text-muted-foreground">3</span>
-                      <span>Number of responsive columns</span>
+                      <code>layout</code>
+                      <span className="text-muted-foreground">"horizontal" | "vertical"</span>
+                      <span className="text-muted-foreground">"horizontal"</span>
+                      <span>Layout direction for items</span>
                     </div>
                     <div className="grid grid-cols-4 gap-4 py-2">
-                      <code>title</code>
-                      <span className="text-muted-foreground">string?</span>
-                      <span className="text-muted-foreground">-</span>
-                      <span>Optional section title</span>
+                      <code>columns</code>
+                      <span className="text-muted-foreground">ResponsiveColumnsConfig</span>
+                      <span className="text-muted-foreground">{`{ base: 1, md: 2, lg: 3 }`}</span>
+                      <span>Responsive columns (unlimited, up to 12)</span>
                     </div>
                     <div className="grid grid-cols-4 gap-4 py-2">
                       <code>className</code>
@@ -442,16 +721,16 @@ export default function HomePage() {
                       <span>Field label</span>
                     </div>
                     <div className="grid grid-cols-4 gap-4 py-2">
-                      <code>value</code>
+                      <code>children</code>
                       <span className="text-muted-foreground">ReactNode</span>
                       <span className="text-muted-foreground">-</span>
-                      <span>Field value (can be JSX)</span>
+                      <span>Field content (any React element)</span>
                     </div>
                     <div className="grid grid-cols-4 gap-4 py-2">
                       <code>span</code>
-                      <span className="text-muted-foreground">1 | 2 | 3</span>
+                      <span className="text-muted-foreground">number | "filled" | ResponsiveSpan</span>
                       <span className="text-muted-foreground">1</span>
-                      <span>Column span for the item</span>
+                      <span>Column span (1-12, "filled", or responsive object)</span>
                     </div>
                     <div className="grid grid-cols-4 gap-4 py-2">
                       <code>className</code>
@@ -463,9 +742,7 @@ export default function HomePage() {
                 </div>
 
                 <div>
-                  <h4 className="font-semibold mb-3">
-                    DescriptionSection Props
-                  </h4>
+                  <h4 className="font-semibold mb-3">DescriptionSection Props</h4>
                   <div className="grid gap-2 text-sm">
                     <div className="grid grid-cols-4 gap-4 py-2 border-b font-medium">
                       <span>Prop</span>
@@ -493,6 +770,37 @@ export default function HomePage() {
                     </div>
                   </div>
                 </div>
+
+                <div>
+                  <h4 className="font-semibold mb-3">New Features</h4>
+                  <div className="space-y-3">
+                    <div className="p-4 bg-blue-50 rounded-lg">
+                      <h5 className="font-medium text-blue-900 mb-2">Layout Options</h5>
+                      <p className="text-sm text-blue-800">
+                        <code>layout="horizontal"</code> (default): Items arranged in responsive grid<br/>
+                        <code>layout="vertical"</code>: Items stacked vertically, full width
+                      </p>
+                    </div>
+                    <div className="p-4 bg-green-50 rounded-lg">
+                      <h5 className="font-medium text-green-900 mb-2">Unlimited Columns</h5>
+                      <p className="text-sm text-green-800">
+                        No more 3-column limit! Use up to 12 columns with full Tailwind CSS support.
+                      </p>
+                    </div>
+                    <div className="p-4 bg-purple-50 rounded-lg">
+                      <h5 className="font-medium text-purple-900 mb-2">"Filled" Spanning</h5>
+                      <p className="text-sm text-purple-800">
+                        <code>span="filled"</code>: Automatically spans all remaining columns in the current row.
+                      </p>
+                    </div>
+                    <div className="p-4 bg-orange-50 rounded-lg">
+                      <h5 className="font-medium text-orange-900 mb-2">Responsive Spans</h5>
+                      <p className="text-sm text-orange-800">
+                        Use responsive objects: <code>span={`{{ base: "filled", md: 2, lg: 3 }}`}</code>
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -508,21 +816,13 @@ export default function HomePage() {
                 <CardTitle className="text-green-600">✓ Do</CardTitle>
               </CardHeader>
               <CardContent className="space-y-2 text-sm">
-                <p>• Use basic variant for simple, scannable information</p>
-                <p>• Use bordered variant for complex, structured data</p>
-                <p>
-                  • Leverage ReactNode values for rich content (badges, icons,
-                  etc.)
-                </p>
-                <p>• Use span prop to create full-width sections when needed</p>
-                <p>
-                  • Choose appropriate column counts (1-3) for your content
-                  density
-                </p>
-                <p>
-                  • Use DescriptionSection for grouped content in bordered
-                  variant
-                </p>
+                <p>• Use <code>layout="vertical"</code> for mobile-first or detailed information</p>
+                <p>• Use <code>layout="horizontal"</code> for traditional key-value displays</p>
+                <p>• Use <code>span="filled"</code> for content that should span remaining space</p>
+                <p>• Leverage responsive spanning for complex layouts</p>
+                <p>• Use up to 12 columns for complex data grids</p>
+                <p>• Mix basic and bordered variants appropriately</p>
+                <p>• Use ReactNode children for rich content (badges, icons, etc.)</p>
               </CardContent>
             </Card>
 
@@ -532,13 +832,11 @@ export default function HomePage() {
               </CardHeader>
               <CardContent className="space-y-2 text-sm">
                 <p>• Mix variants within the same logical section</p>
-                <p>• Use too many columns on mobile devices</p>
-                <p>
-                  • Overcomplicate simple key-value pairs with bordered variant
-                </p>
-                <p>• Forget to handle long text content gracefully</p>
-                <p>• Use bordered variant for just 2-3 simple fields</p>
-                <p>• Exceed span values beyond the column count</p>
+                <p>• Use too many columns on small screens</p>
+                <p>• Overcomplicate simple data with too many columns</p>
+                <p>• Forget that spans are automatically clamped to available columns</p>
+                <p>• Use vertical layout when horizontal would be more readable</p>
+                <p>• Ignore responsive considerations when using multiple columns</p>
               </CardContent>
             </Card>
           </div>
