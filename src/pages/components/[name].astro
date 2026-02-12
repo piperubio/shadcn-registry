@@ -25,14 +25,14 @@ export async function getStaticPaths() {
 
 const { name } = Astro.params;
 
-// Load registry item JSON from public/r
+// Load registry item JSON from public/r using filesystem (reliable during build)
 let item = null;
 try {
-  const url = new URL(`/r/${name}.json`, import.meta.url);
-  item = await fetch(url).then((r) => {
-    if (!r.ok) return null;
-    return r.json();
-  });
+  const fs = await import('fs/promises');
+  const path = await import('path');
+  const filePath = path.join(process.cwd(), 'public', 'r', `${name}.json`);
+  const raw = await fs.readFile(filePath, 'utf-8');
+  item = JSON.parse(raw);
 } catch (err) {
   item = null;
 }
