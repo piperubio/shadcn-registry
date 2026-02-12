@@ -18,6 +18,8 @@ interface HeaderProps {
   logoSrc: string;
   logoAlt: string;
   logoHref?: string;
+  /** Visible site title next to the logo */
+  siteTitle?: string;
   mobileLogoSrc?: string;
   mobileLogoAlt?: string;
   mobileMenuVariant?: "dropdown" | "drawer";
@@ -45,6 +47,7 @@ const {
   langToggle,
   className = "",
   containerClassName = "container mx-auto px-4 sm:px-6 lg:px-8",
+  siteTitle = "shadcn registry by piperubio",
   navLinkClassName = "text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors",
   mobileNavLinkClassName = "text-gray-800 hover:text-primary block px-3 py-2 rounded-md text-base font-medium",
   shrinkOnScroll = false,
@@ -74,6 +77,8 @@ const navId = `${id}-nav`;
       <a href={logoHref} class="flex items-center">
         <img class="hidden md:block h-12 w-auto" src={logoSrc} alt={logoAlt}>
         <img class="block md:hidden h-10 w-auto" src={resolvedMobileLogoSrc} alt={resolvedMobileLogoAlt}>
+        <span class="hidden md:inline ml-3 text-lg font-semibold text-gray-800">{siteTitle}</span>
+        <span class="md:hidden ml-2 text-sm font-semibold text-gray-800">{siteTitle}</span>
       </a>
 
       <div class="flex items-center gap-3">

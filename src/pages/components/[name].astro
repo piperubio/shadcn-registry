@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../../layouts/base-layout.astro";
 import InstallCommand from "../../components/install-command.astro";
+import RegistryHeader from "../../../registry/ui/astro/components/header/header.astro";
+import HomePage from "../../components/demo/home-page";
 
 const { name } = Astro.params;
 
@@ -29,7 +31,55 @@ if (!item) {
 
     <InstallCommand name={item.name} className="mb-6" />
 
-    <section class="space-y-4">
+    <!-- If this is the header (Astro) component, render a demo similar to /demo/header -->
+    {item.name === 'header' && item.meta?.framework === 'astro' ? (
+      <section class="space-y-6">
+        <div class="rounded-xl border bg-card overflow-hidden">
+          <div class="border-b px-4 py-3">
+            <h2 class="font-semibold">Dropdown mobile menu</h2>
+          </div>
+          <RegistryHeader
+            id="demo-header-dropdown"
+            navItems={[{ label: 'Inicio', href: '#inicio' }, { label: 'Productos', href: '#productos' }]}
+            logoSrc="/img/logo.webp"
+            logoAlt="Demo Logo"
+            mobileLogoSrc="/img/logo.webp"
+            mobileMenuVariant="dropdown"
+            className="relative"
+          />
+          <div class="p-6 pt-10 text-sm text-muted-foreground">Use <code>mobileMenuVariant="dropdown"</code> for a simple stacked mobile menu.</div>
+        </div>
+
+        <div class="rounded-xl border bg-card overflow-hidden">
+          <div class="border-b px-4 py-3">
+            <h2 class="font-semibold">Drawer mobile menu + language toggle + shrink on scroll</h2>
+          </div>
+          <RegistryHeader
+            id="demo-header-drawer"
+            navItems={[{ label: 'Inicio', href: '#inicio' }, { label: 'Contacto', href: '#contacto' }]}
+            logoSrc="/img/logo.webp"
+            logoAlt="Demo Logo"
+            mobileMenuVariant="drawer"
+            className="relative"
+            langToggle={{ label: 'EN', href: '/' }}
+            shrinkOnScroll={true}
+            expandedHeightClass="h-[96px]"
+            compactHeightClass="h-[68px]"
+          />
+          <div class="p-6 pt-10 text-sm text-muted-foreground">Use <code>mobileMenuVariant="drawer"</code> for an off-canvas menu.</div>
+        </div>
+      </section>
+    ) : null}
+
+    <!-- If this is the description (React) component, render the React demo HomePage inside the Astro page -->
+    {item.name === 'description' && item.meta?.framework === 'react' ? (
+      <div>
+        <!-- hydrate React demo on client load -->
+        <HomePage client:load />
+      </div>
+    ) : null}
+
+    <section class="space-y-4 mt-6">
       <h2 class="text-xl font-semibold">Details</h2>
       <div class="text-sm text-muted-foreground">
         <div><strong>Framework:</strong> {item.meta?.framework ?? 'unknown'}</div>

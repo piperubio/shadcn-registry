@@ -1,5 +1,4 @@
 ---
-import HomePage from "../components/demo/home-page";
 import DemoMenu from "../components/demo/demo-menu.astro";
 import BaseLayout from "../layouts/base-layout.astro";
 import InstallCommand from "../components/install-command.astro";
@@ -7,7 +6,20 @@ import InstallCommand from "../components/install-command.astro";
 
 <BaseLayout>
   <DemoMenu currentPath={Astro.url.pathname} />
-  <HomePage />
-  <!-- Install command for React description component (served from /r/description.json) -->
-  <InstallCommand name="description" className="max-w-6xl mx-auto p-6" />
+  <!-- Component index: list of components (auto-generated) -->
+  <main class="max-w-6xl mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-4">Component Registry</h1>
+    <p class="text-muted-foreground mb-6">List of available components in this registry.</p>
+
+    <ul class="grid md:grid-cols-2 gap-4">
+      <li class="rounded-lg border p-4">
+        <a href="/components/description" class="font-medium">Description</a>
+        <p class="text-sm text-muted-foreground mt-2">React component demo with layout and span variants.</p>
+      </li>
+      <li class="rounded-lg border p-4">
+        <a href="/components/header" class="font-medium">Header</a>
+        <p class="text-sm text-muted-foreground mt-2">Astro reusable header demo with dropdown and drawer modes.</p>
+      </li>
+    </ul>
+  </main>
 </BaseLayout>
