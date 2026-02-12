@@ -3,15 +3,15 @@ import {
   Description,
   DescriptionItem,
   DescriptionSection,
-} from "@/components/description/description";
+} from "@/registry/ui/components/description/description";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+} from "@/registry/ui/components/ui/card";
+import { Badge } from "@/registry/ui/components/ui/badge";
 
 export default function HomePage() {
   return (
@@ -404,7 +404,7 @@ export default function HomePage() {
                   <div className="flex flex-wrap gap-1">
                     <Badge variant="secondary">React</Badge>
                     <Badge variant="secondary">TypeScript</Badge>
-                    <Badge variant="secondary">Next.js</Badge>
+                    <Badge variant="secondary">Astro</Badge>
                     <Badge variant="secondary">Tailwind</Badge>
                     <Badge variant="secondary">Node.js</Badge>
                     <Badge variant="secondary">PostgreSQL</Badge>
@@ -479,7 +479,7 @@ export default function HomePage() {
                   span={{ base: "filled", md: "filled", lg: 2 }}
                 >
                   <div className="flex flex-wrap gap-1">
-                    <Badge variant="outline">Next.js</Badge>
+                    <Badge variant="outline">Astro</Badge>
                     <Badge variant="outline">Prisma</Badge>
                     <Badge variant="outline">Stripe</Badge>
                     <span className="text-muted-foreground ml-2">(responsive: base/md=filled, lg=2)</span>
@@ -517,7 +517,7 @@ export default function HomePage() {
     span={{ base: "filled", md: "filled", lg: 2 }}
   >
     <div className="flex flex-wrap gap-1">
-      <Badge>Next.js</Badge>
+      <Badge>Astro</Badge>
       <Badge>Prisma</Badge>
       <Badge>Stripe</Badge>
     </div>

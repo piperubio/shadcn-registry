@@ -2,8 +2,8 @@
 
 import React, { createContext, useContext, Children, isValidElement } from "react";
 import type { ReactNode } from "react";
-import { Card } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
+import { Card } from "../ui/card";
+import { cn } from "../../lib/utils";
 
 type SpanValues = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | "filled";
 type BreakpointKey = "base" | "sm" | "md" | "lg" | "xl" | "2xl";
