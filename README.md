@@ -73,3 +73,9 @@ pnpm test
 pnpm run test:run
 pnpm run test:ui
 ```
+
+## Production
+
+The production site is deployed at:
+
+`https://piperubio-shadcn-registry.vercel.app`

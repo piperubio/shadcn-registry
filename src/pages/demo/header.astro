@@ -2,7 +2,6 @@
 import BaseLayout from "../../layouts/base-layout.astro";
 import DemoMenu from "../../components/demo/demo-menu.astro";
 import RegistryHeader from "../../../registry/ui/astro/components/header/header.astro";
-import InstallCommand from "../../components/install-command.astro";
 
 const navItems = [
   { label: "Inicio", href: "#inicio" },
@@ -23,8 +22,7 @@ const navItems = [
       </p>
     </section>
 
-    <!-- Install command for this component -->
-    <InstallCommand name="header" className="p-6" />
+    <!-- No install button in header demo page (install shown on component page) -->
 
     <section class="rounded-xl border bg-card overflow-hidden">
       <div class="border-b px-4 py-3">

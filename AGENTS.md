@@ -1,33 +1,33 @@
 # Agent Development Guidelines
 
-## Package Manager
-- **Use pnpm instead of npm** for all package management and script execution
-- This project uses pnpm as the preferred package manager
+Keep rules short. Agents should follow these minimal guidelines when working in this repo.
 
-## Build/Test Commands
-- **Build**: `pnpm run build` (Next.js build)
-- **Dev**: `pnpm run dev` (development server)
-- **Lint**: `pnpm run lint` (Next.js ESLint)
-- **Tests**: `pnpm test` (Vitest), `pnpm run test:run` (single run), `pnpm run test:ui` (UI mode)
-- **Single test**: `pnpm test -- components/description/__tests__/description.test.tsx`
+Package manager
+- Use `pnpm` for all package management and scripts.
 
-## Code Style
-- Use TypeScript with strict types, explicit interfaces for props
-- React functional components with hooks, use `"use client"` for client components
-- Import order: React imports, type imports, internal components (`@/`), then external
-- Use `cn()` from `@/lib/utils` for className merging, cva for variant classes
-- Props destructuring with defaults: `{ className = "", variant = "default" }`
-- Interface names end with `Props` for component props
-- Use JSDoc comments for complex functions/props when needed
+Common commands
+- `pnpm run dev` — start dev server
+- `pnpm run build` — build site
+- `pnpm run lint` — run checks
+- `pnpm test` — Vitest (watch)
+- `pnpm run test:run` — Vitest (single run)
+- Single test: `pnpm test -- path/to/file.test.tsx`
 
-## Patterns
-- Radix UI + shadcn/ui components, Tailwind CSS for styling
-- Context for passing shared state (e.g., DescriptionContext)
-- Class variance authority (cva) for component variants
-- Vitest + Testing Library for tests with proper describe/it structure
-- Path alias `@/` for root-level imports
+Style highlights
+- TypeScript (strict). Prefer explicit types; avoid `any`.
+- React components: functional + hooks; add `"use client"` for client components.
+- Export prop interfaces `XxxProps`; destructure with defaults.
+- Import order: `react`, type-only, `@/` (internal), third-party, styles/assets.
+- Styling: Tailwind + `cn()`/`clsx`; use `cva` for variants.
 
-## Instructions
+Tests & tooling
+- Vitest + Testing Library, `jsdom` env; global setup in `src/test/setup.ts`.
 
-- NOT RUN TESTS WITHOUT USER REQUEST
-- NOT RUN DEV SERVER WITHOUT USER REQUEST
+Safety & git
+- Do not start long-running processes unless requested.
+- Do not create commits unless requested; follow non-destructive git rules.
+
+Production URL
+- `https://piperubio-shadcn-registry.vercel.app`
+
+If unsure, follow nearby examples in `registry/ui/react/components` or `src/components`.

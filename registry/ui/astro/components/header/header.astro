@@ -74,12 +74,12 @@ const navId = `${id}-nav`;
 >
   <div class={containerClassName}>
     <div class="flex justify-between items-center h-full min-h-16">
-      <a href={logoHref} class="flex items-center">
-        <img class="hidden md:block h-12 w-auto" src={logoSrc} alt={logoAlt}>
-        <img class="block md:hidden h-10 w-auto" src={resolvedMobileLogoSrc} alt={resolvedMobileLogoAlt}>
+        <a href={logoHref} class="flex items-center" aria-label="Home">
+          <img class="hidden md:block h-12 w-auto" src={logoSrc} alt={logoAlt}>
+          <img class="block md:hidden h-10 w-auto" src={resolvedMobileLogoSrc} alt={resolvedMobileLogoAlt}>
         <span class="hidden md:inline ml-3 text-lg font-semibold text-gray-800">{siteTitle}</span>
         <span class="md:hidden ml-2 text-sm font-semibold text-gray-800">{siteTitle}</span>
-      </a>
+        </a>
 
       <div class="flex items-center gap-3">
         <nav id={navId} class="hidden md:flex items-center space-x-4" aria-label="Main navigation">
