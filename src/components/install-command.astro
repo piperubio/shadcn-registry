@@ -1,5 +1,7 @@
 ---
-const { name, registryUrl = "https://piperubio-shadcn-registry.vercel.app", className = "" } = Astro.props;
+import { siteConfig } from "../data/site.config";
+
+const { name, registryUrl = siteConfig.registryUrl, className = "" } = Astro.props;
 const cmd = `pnpm dlx shadcn@latest add ${registryUrl}/r/${name}.json`;
 const id = `install-cmd-${name}`;
 ---
