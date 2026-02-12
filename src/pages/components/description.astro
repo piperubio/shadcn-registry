@@ -1,0 +1,49 @@
+---
+import BaseLayout from "../../layouts/base-layout.astro";
+import InstallCommand from "../../components/install-command.astro";
+import HomePage from "../../components/demo/home-page";
+
+// Read the registry item directly from public/r/description.json
+const fs = await import('fs/promises');
+const path = await import('path');
+let item = null;
+try {
+  const filePath = path.join(process.cwd(), 'public', 'r', 'description.json');
+  const raw = await fs.readFile(filePath, 'utf-8');
+  item = JSON.parse(raw);
+} catch (err) {
+  throw new Error('Registry item not found: description');
+}
+---
+
+<BaseLayout title={`${item.title ?? item.name} | Component`} description={item.description ?? ''}>
+  <main class="max-w-6xl mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-2">{item.title ?? item.name}</h1>
+    <p class="text-muted-foreground mb-6">{item.description}</p>
+
+    <InstallCommand name={item.name} className="mb-6" />
+
+    <!-- Hydrate the React demo for the description component -->
+    <div>
+      <HomePage client:load />
+    </div>
+
+    <section class="space-y-4 mt-6">
+      <h2 class="text-xl font-semibold">Details</h2>
+      <div class="text-sm text-muted-foreground">
+        <div><strong>Framework:</strong> {item.meta?.framework ?? 'unknown'}</div>
+        {item.dependencies ? <div><strong>Dependencies:</strong> {item.dependencies.join(', ')}</div> : null}
+        {item.registryDependencies ? <div><strong>Registry dependencies:</strong> {item.registryDependencies.join(', ')}</div> : null}
+      </div>
+    </section>
+
+    <section class="mt-6">
+      <h2 class="text-xl font-semibold">Files</h2>
+      <ul class="list-disc ml-6 text-sm">
+        {item.files?.map((f: any) => (
+          <li>{f.path}</li>
+        ))}
+      </ul>
+    </section>
+  </main>
+</BaseLayout>

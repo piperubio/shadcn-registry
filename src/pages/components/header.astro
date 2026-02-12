@@ -1,0 +1,72 @@
+---
+import BaseLayout from "../../layouts/base-layout.astro";
+import InstallCommand from "../../components/install-command.astro";
+import RegistryHeader from "../../../registry/ui/astro/components/header/header.astro";
+
+// Read the registry item directly from public/r/header.json
+const fs = await import('fs/promises');
+const path = await import('path');
+let item = null;
+try {
+  const filePath = path.join(process.cwd(), 'public', 'r', 'header.json');
+  const raw = await fs.readFile(filePath, 'utf-8');
+  item = JSON.parse(raw);
+} catch (err) {
+  throw new Error('Registry item not found: header');
+}
+---
+
+<BaseLayout title={`${item.title ?? item.name} | Component`} description={item.description ?? ''}>
+  <main class="max-w-6xl mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-2">{item.title ?? item.name}</h1>
+    <p class="text-muted-foreground mb-6">{item.description}</p>
+
+    <InstallCommand name={item.name} className="mb-6" />
+
+    <!-- Render header demos -->
+    <section class="space-y-6">
+      <div class="rounded-xl border bg-card overflow-hidden">
+        <div class="border-b px-4 py-3">
+          <h2 class="font-semibold">Dropdown mobile menu</h2>
+        </div>
+        <RegistryHeader
+          id="demo-header-dropdown"
+          navItems={[{ label: 'Inicio', href: '#inicio' }, { label: 'Productos', href: '#productos' }]}
+          logoSrc="/img/logo.webp"
+          logoAlt="Demo Logo"
+          mobileLogoSrc="/img/logo.webp"
+          mobileMenuVariant="dropdown"
+          className="relative"
+        />
+        <div class="p-6 pt-10 text-sm text-muted-foreground">Use <code>mobileMenuVariant="dropdown"</code> for a simple stacked mobile menu.</div>
+      </div>
+
+      <div class="rounded-xl border bg-card overflow-hidden">
+        <div class="border-b px-4 py-3">
+          <h2 class="font-semibold">Drawer mobile menu + language toggle + shrink on scroll</h2>
+        </div>
+        <RegistryHeader
+          id="demo-header-drawer"
+          navItems={[{ label: 'Inicio', href: '#inicio' }, { label: 'Contacto', href: '#contacto' }]}
+          logoSrc="/img/logo.webp"
+          logoAlt="Demo Logo"
+          mobileMenuVariant="drawer"
+          className="relative"
+          langToggle={{ label: 'EN', href: '/' }}
+          shrinkOnScroll={true}
+          expandedHeightClass="h-[96px]"
+          compactHeightClass="h-[68px]"
+        />
+        <div class="p-6 pt-10 text-sm text-muted-foreground">Use <code>mobileMenuVariant="drawer"</code> for an off-canvas menu.</div>
+      </div>
+    </section>
+
+    <section class="space-y-4 mt-6">
+      <h2 class="text-xl font-semibold">Details</h2>
+      <div class="text-sm text-muted-foreground">
+        <div><strong>Framework:</strong> {item.meta?.framework ?? 'unknown'}</div>
+        {item.dependencies ? <div><strong>Dependencies:</strong> {item.dependencies.join(', ')}</div> : null}
+      </div>
+    </section>
+  </main>
+</BaseLayout>
