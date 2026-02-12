@@ -1,29 +1,17 @@
 ---
 import BaseLayout from "../../layouts/base-layout.astro";
 import DemoMenu from "../../components/demo/demo-menu.astro";
-import InstallCommand from "../../components/install-command.astro";
 import HomePage from "../../components/demo/home-page";
+import ComponentMeta from "../../components/component-meta.astro";
+import { readRegistryItem } from "../../lib/registry";
 
-// Read the registry item directly from public/r/description.json
-const fs = await import('fs/promises');
-const path = await import('path');
-let item = null;
-try {
-  const filePath = path.join(process.cwd(), 'public', 'r', 'description.json');
-  const raw = await fs.readFile(filePath, 'utf-8');
-  item = JSON.parse(raw);
-} catch (err) {
-  throw new Error('Registry item not found: description');
-}
+const item = await readRegistryItem('description');
 ---
 
 <BaseLayout title={`${item.title ?? item.name} | Component`} description={item.description ?? ''}>
   <DemoMenu currentPath={Astro.url.pathname} />
   <main class="max-w-6xl mx-auto p-6">
-    <h1 class="text-3xl font-bold mb-2">{item.title ?? item.name}</h1>
-    <p class="text-muted-foreground mb-6">{item.description}</p>
-
-    <InstallCommand name={item.name} className="mb-6" />
+    <ComponentMeta item={item} />
 
     <!-- Hydrate the React demo for the description component -->
     <div>
