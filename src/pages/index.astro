@@ -2,9 +2,12 @@
 import HomePage from "../components/demo/home-page";
 import DemoMenu from "../components/demo/demo-menu.astro";
 import BaseLayout from "../layouts/base-layout.astro";
+import InstallCommand from "../components/install-command.astro";
 ---
 
 <BaseLayout>
   <DemoMenu currentPath={Astro.url.pathname} />
   <HomePage />
+  <!-- Install command for React description component (served from /r/description.json) -->
+  <InstallCommand name="description" className="max-w-6xl mx-auto p-6" />
 </BaseLayout>

@@ -1,7 +1,8 @@
 ---
 import BaseLayout from "../../layouts/base-layout.astro";
 import DemoMenu from "../../components/demo/demo-menu.astro";
-import Header from "../../../registry/ui/astro/components/header/header.astro";
+import RegistryHeader from "../../../registry/ui/astro/components/header/header.astro";
+import InstallCommand from "../../components/install-command.astro";
 
 const navItems = [
   { label: "Inicio", href: "#inicio" },
@@ -22,12 +23,15 @@ const navItems = [
       </p>
     </section>
 
+    <!-- Install command for this component -->
+    <InstallCommand name="header" className="p-6" />
+
     <section class="rounded-xl border bg-card overflow-hidden">
       <div class="border-b px-4 py-3">
         <h2 class="font-semibold">Dropdown mobile menu</h2>
       </div>
 
-      <Header
+      <RegistryHeader
         id="demo-header-dropdown"
         navItems={navItems}
         logoSrc="/img/logo.webp"
@@ -47,7 +51,7 @@ const navItems = [
         <h2 class="font-semibold">Drawer mobile menu + language toggle + shrink on scroll</h2>
       </div>
 
-      <Header
+      <RegistryHeader
         id="demo-header-drawer"
         navItems={navItems}
         logoSrc="/img/logo.webp"
