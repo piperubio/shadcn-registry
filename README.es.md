@@ -2,6 +2,13 @@
 
 Registro de componentes custom de shadcn/ui, alojado como sitio Astro para demos y distribución.
 
+Propósito
+- Este repositorio construye un registro de componentes para el CLI `shadcn`. Los
+  componentes React y Astro viven bajo la carpeta `registry/` (conceptualmente importable
+  como `@registry/`). El registry genera manifiestos JSON (servidos desde `public/r/`) que
+  el CLI de `shadcn` utiliza para instalar componentes en proyectos usando un flujo copy/paste.
+  Los manifiestos se generan con `pnpm registry:build`.
+
 *[Read in English](README.md)*
 
 ## Stack

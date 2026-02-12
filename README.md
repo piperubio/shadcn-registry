@@ -2,12 +2,19 @@
 
 Registry of custom shadcn/ui components, hosted as an Astro site for demos and distribution.
 
+Purpose
+- This repository builds a component registry for the `shadcn` CLI. React and Astro
+  components live under the `registry/` directory (conceptually importable as `@registry/`).
+  The registry generates JSON manifests (served from `public/r/`) that the `shadcn` CLI
+  consumes to install components into projects using a copy/paste workflow. Generate manifests
+  with `pnpm registry:build`.
+
 *[Read in Spanish](README.es.md)*
 
 ## Stack
 
 - Host framework: Astro
-- Components: React + Tailwind CSS
+- Components: React + Astro + Tailwind CSS
 - Testing: Vitest + Testing Library
 - Types: TypeScript (strict)
 
@@ -24,11 +31,21 @@ Open `http://localhost:4321`.
 
 ## Registry usage
 
-Install from your registry URL:
+Install from your registry URL. You can point the CLI at the registry root or to a
+per-component manifest URL.
 
 ```bash
-npx shadcn@latest add description --registry-url https://registry.piperubio.dev
+# Using the registry root (recommended):
+npx shadcn@latest add description --registry-url https://piperubio-shadcn-registry.vercel.app
+
+# Or point directly to a component manifest:
+npx shadcn@latest add description --registry-url https://piperubio-shadcn-registry.vercel.app/r/description.json
 ```
+
+Per-component manifest pattern:
+
+`https://piperubio-shadcn-registry.vercel.app/r/<component>.json` (example:
+`https://piperubio-shadcn-registry.vercel.app/r/description.json`)
 
 Registry assets are served from:
 

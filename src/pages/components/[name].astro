@@ -4,6 +4,25 @@ import InstallCommand from "../../components/install-command.astro";
 import RegistryHeader from "../../../registry/ui/astro/components/header/header.astro";
 import HomePage from "../../components/demo/home-page";
 
+export async function getStaticPaths() {
+  // Read JSON files from public/r and generate static paths for each component
+  const fs = await import('fs/promises');
+  const path = await import('path');
+  const dir = path.join(process.cwd(), 'public', 'r');
+  let files: string[] = [];
+  try {
+    files = await fs.readdir(dir);
+  } catch (err) {
+    files = [];
+  }
+
+  const paths = files
+    .filter((f) => f.endsWith('.json'))
+    .map((f) => ({ params: { name: f.replace(/\.json$/, '') } }));
+
+  return paths;
+}
+
 const { name } = Astro.params;
 
 // Load registry item JSON from public/r

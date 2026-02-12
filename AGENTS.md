@@ -2,6 +2,12 @@
 
 Keep rules short. Agents should follow these minimal guidelines when working in this repo.
 
+Purpose
+- This repository builds a component registry for the `shadcn` CLI. React and Astro
+  components live under the `registry/` directory (consumable conceptually as `@registry/`).
+  The registry can generate JSON manifests (in `public/r/`) that the `shadcn` CLI uses to
+  install components (copy/paste style). Manifests are produced with `pnpm registry:build`.
+
 Package manager
 - Use `pnpm` for all package management and scripts.
 
