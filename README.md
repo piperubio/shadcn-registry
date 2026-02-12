@@ -32,8 +32,13 @@ npx shadcn@latest add description --registry-url https://registry.piperubio.dev
 
 Registry assets are served from:
 
-- `/registry.json`
-- `/registry/*`
+- `/r/registry.json`
+- `/r/<component>.json` (example: `/r/description.json`)
+
+Framework segregation:
+
+- React components (`*.tsx`): `registry/ui/react/`
+- Astro components (`*.astro`): `registry/ui/astro/`
 
 ## Project structure
 
@@ -41,12 +46,13 @@ Registry assets are served from:
 shadcn-registry/
 ├── registry/
 │   └── ui/
-│       ├── components/
-│       └── lib/
+│       ├── react/          # React registry components (*.tsx)
+│       └── astro/          # Astro registry components (*.astro)
 ├── public/
-│   ├── registry.json
-│   └── registry/
-│       └── ui/
+│   └── r/                  # Public registry endpoints
+│       ├── registry.json
+│       ├── description.json
+│       └── registry/ui/
 ├── src/
 │   ├── components/
 │   ├── layouts/

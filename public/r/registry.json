@@ -8,6 +8,9 @@
       "type": "registry:component",
       "title": "Description",
       "description": "Description component built for React with Tailwind CSS.",
+      "meta": {
+        "framework": "react"
+      },
       "dependencies": [
         "class-variance-authority",
         "clsx",
@@ -18,19 +21,35 @@
       ],
       "files": [
         {
-          "path": "registry/ui/components/description/description.tsx",
+          "path": "registry/ui/react/components/description/description.tsx",
           "type": "registry:component",
           "target": "components/description/description.tsx"
         },
         {
-          "path": "registry/ui/components/ui/card.tsx",
+          "path": "registry/ui/react/components/ui/card.tsx",
           "type": "registry:component",
           "target": "components/ui/card.tsx"
         },
         {
-          "path": "registry/ui/lib/utils.ts",
+          "path": "registry/ui/react/lib/utils.ts",
           "type": "registry:lib",
           "target": "lib/utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "header",
+      "type": "registry:component",
+      "title": "Reusable Header",
+      "description": "Reusable and configurable header component for Astro projects.",
+      "meta": {
+        "framework": "astro"
+      },
+      "files": [
+        {
+          "path": "registry/ui/astro/components/header/header.astro",
+          "type": "registry:component",
+          "target": "components/header/header.astro"
         }
       ]
     }

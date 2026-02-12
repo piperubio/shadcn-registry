@@ -1,0 +1,52 @@
+---
+interface DemoMenuItem {
+  label: string;
+  href: string;
+  description: string;
+}
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props as Props;
+
+const items: DemoMenuItem[] = [
+  {
+    label: "Description",
+    href: "/",
+    description: "React component demo with layout and span variants.",
+  },
+  {
+    label: "Header",
+    href: "/demo/header",
+    description: "Astro reusable header demo with dropdown and drawer modes.",
+  },
+];
+---
+
+<nav aria-label="Registry demo menu" class="border-b bg-background/95 backdrop-blur sticky top-0 z-40">
+  <div class="max-w-6xl mx-auto px-6 py-4">
+    <div class="flex flex-wrap items-center gap-3">
+      <span class="text-sm font-semibold text-muted-foreground">Demo Components</span>
+      {
+        items.map((item) => {
+          const isActive = currentPath === item.href;
+          return (
+            <a
+              href={item.href}
+              class={`inline-flex items-center rounded-md border px-3 py-1.5 text-sm transition-colors ${
+                isActive
+                  ? "bg-primary text-primary-foreground border-primary"
+                  : "bg-background hover:bg-muted border-border"
+              }`}
+              title={item.description}
+            >
+              {item.label}
+            </a>
+          );
+        })
+      }
+    </div>
+  </div>
+</nav>

@@ -3,15 +3,15 @@ import {
   Description,
   DescriptionItem,
   DescriptionSection,
-} from "@/registry/ui/components/description/description";
+} from "@/registry/ui/react/components/description/description";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/registry/ui/components/ui/card";
-import { Badge } from "@/registry/ui/components/ui/badge";
+} from "@/registry/ui/react/components/ui/card";
+import { Badge } from "@/registry/ui/react/components/ui/badge";
 
 export default function HomePage() {
   return (

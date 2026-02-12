@@ -1,0 +1,258 @@
+---
+interface NavItem {
+  label: string;
+  href: string;
+  target?: string;
+  rel?: string;
+}
+
+interface LangToggle {
+  label: string;
+  href: string;
+  ariaLabel?: string;
+}
+
+interface HeaderProps {
+  id?: string;
+  navItems: NavItem[];
+  logoSrc: string;
+  logoAlt: string;
+  logoHref?: string;
+  mobileLogoSrc?: string;
+  mobileLogoAlt?: string;
+  mobileMenuVariant?: "dropdown" | "drawer";
+  showShadow?: boolean;
+  langToggle?: LangToggle;
+  className?: string;
+  containerClassName?: string;
+  navLinkClassName?: string;
+  mobileNavLinkClassName?: string;
+  shrinkOnScroll?: boolean;
+  expandedHeightClass?: string;
+  compactHeightClass?: string;
+}
+
+const {
+  id = "astro-header",
+  navItems,
+  logoSrc,
+  logoAlt,
+  logoHref = "/",
+  mobileLogoSrc,
+  mobileLogoAlt,
+  mobileMenuVariant = "drawer",
+  showShadow = true,
+  langToggle,
+  className = "",
+  containerClassName = "container mx-auto px-4 sm:px-6 lg:px-8",
+  navLinkClassName = "text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors",
+  mobileNavLinkClassName = "text-gray-800 hover:text-primary block px-3 py-2 rounded-md text-base font-medium",
+  shrinkOnScroll = false,
+  expandedHeightClass = "h-[100px]",
+  compactHeightClass = "h-[65px]",
+} = Astro.props as HeaderProps;
+
+const resolvedMobileLogoSrc = mobileLogoSrc ?? logoSrc;
+const resolvedMobileLogoAlt = mobileLogoAlt ?? logoAlt;
+const headerShadow = showShadow ? "shadow-md" : "";
+const initialHeightClass = shrinkOnScroll ? expandedHeightClass : "h-16 md:h-20";
+
+const menuButtonId = `${id}-menu-button`;
+const mobileMenuId = `${id}-mobile-menu`;
+const overlayId = `${id}-mobile-overlay`;
+const closeButtonId = `${id}-menu-close-button`;
+const navId = `${id}-nav`;
+---
+
+<header
+  id={id}
+  data-mobile-variant={mobileMenuVariant}
+  class={`fixed top-0 left-0 w-full z-50 bg-white transition-all duration-300 ${headerShadow} ${initialHeightClass} ${className}`}
+>
+  <div class={containerClassName}>
+    <div class="flex justify-between items-center h-full min-h-16">
+      <a href={logoHref} class="flex items-center">
+        <img class="hidden md:block h-12 w-auto" src={logoSrc} alt={logoAlt}>
+        <img class="block md:hidden h-10 w-auto" src={resolvedMobileLogoSrc} alt={resolvedMobileLogoAlt}>
+      </a>
+
+      <div class="flex items-center gap-3">
+        <nav id={navId} class="hidden md:flex items-center space-x-4" aria-label="Main navigation">
+          {
+            navItems.map((item) => (
+              <a href={item.href} target={item.target} rel={item.rel} class={navLinkClassName}>
+                {item.label}
+              </a>
+            ))
+          }
+        </nav>
+
+        {
+          langToggle && (
+            <a
+              href={langToggle.href}
+              aria-label={langToggle.ariaLabel ?? "Change language"}
+              class="text-gray-700 hover:text-primary font-bold uppercase px-3 py-2 rounded-md transition-colors border border-gray-300 hover:border-primary"
+            >
+              {langToggle.label}
+            </a>
+          )
+        }
+
+        <button
+          id={menuButtonId}
+          type="button"
+          class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
+          aria-controls={mobileMenuId}
+          aria-expanded="false"
+          aria-label="Toggle menu"
+        >
+          <svg
+            data-menu-open-icon
+            class="h-6 w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+          <svg
+            data-menu-close-icon
+            class="hidden h-6 w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  {
+    mobileMenuVariant === "dropdown" ? (
+      <div id={mobileMenuId} class="md:hidden hidden bg-white shadow-lg">
+        <nav class="px-2 pt-2 pb-3 space-y-1 sm:px-3" aria-label="Mobile navigation">
+          {
+            navItems.map((item) => (
+              <a href={item.href} target={item.target} rel={item.rel} class={mobileNavLinkClassName} data-mobile-link>
+                {item.label}
+              </a>
+            ))
+          }
+        </nav>
+      </div>
+    ) : (
+      <>
+        <div id={overlayId} class="fixed inset-0 z-40 bg-black opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out md:hidden"></div>
+        <div id={mobileMenuId} class="fixed right-0 top-0 bottom-0 z-50 w-64 bg-white shadow-lg flex flex-col p-6 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+          <div class="flex justify-end mb-6">
+            <button id={closeButtonId} type="button" class="text-gray-700" aria-label="Close menu">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+
+          <nav class="flex flex-col space-y-4" aria-label="Mobile navigation">
+            {
+              navItems.map((item) => (
+                <a href={item.href} target={item.target} rel={item.rel} class={mobileNavLinkClassName} data-mobile-link>
+                  {item.label}
+                </a>
+              ))
+            }
+          </nav>
+        </div>
+      </>
+    )
+  }
+</header>
+
+<script define:vars={{
+  id,
+  menuButtonId,
+  mobileMenuId,
+  overlayId,
+  closeButtonId,
+  mobileMenuVariant,
+  shrinkOnScroll,
+  expandedHeightClass,
+  compactHeightClass,
+}}>
+  const header = document.getElementById(id);
+  const menuButton = document.getElementById(menuButtonId);
+  const mobileMenu = document.getElementById(mobileMenuId);
+  const overlay = document.getElementById(overlayId);
+  const closeButton = document.getElementById(closeButtonId);
+  const openIcon = menuButton?.querySelector("[data-menu-open-icon]");
+  const closeIcon = menuButton?.querySelector("[data-menu-close-icon]");
+  const mobileLinks = mobileMenu?.querySelectorAll("[data-mobile-link]") ?? [];
+
+  if (shrinkOnScroll && header) {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 50) {
+        header.classList.remove(expandedHeightClass);
+        header.classList.add(compactHeightClass);
+      } else {
+        header.classList.add(expandedHeightClass);
+        header.classList.remove(compactHeightClass);
+      }
+    });
+  }
+
+  if (mobileMenuVariant === "dropdown") {
+    menuButton?.addEventListener("click", () => {
+      const isHidden = mobileMenu?.classList.contains("hidden");
+      mobileMenu?.classList.toggle("hidden");
+      openIcon?.classList.toggle("hidden");
+      closeIcon?.classList.toggle("hidden");
+      menuButton.setAttribute("aria-expanded", isHidden ? "true" : "false");
+    });
+
+    for (const link of mobileLinks) {
+      link.addEventListener("click", () => {
+        mobileMenu?.classList.add("hidden");
+        openIcon?.classList.remove("hidden");
+        closeIcon?.classList.add("hidden");
+        menuButton?.setAttribute("aria-expanded", "false");
+      });
+    }
+  } else {
+    const toggleDrawer = () => {
+      const isClosed = mobileMenu?.classList.contains("translate-x-full");
+
+      if (isClosed) {
+        mobileMenu?.classList.remove("translate-x-full");
+        overlay?.classList.remove("opacity-0", "pointer-events-none");
+        overlay?.classList.add("opacity-50");
+        menuButton?.setAttribute("aria-expanded", "true");
+      } else {
+        mobileMenu?.classList.add("translate-x-full");
+        overlay?.classList.add("opacity-0", "pointer-events-none");
+        overlay?.classList.remove("opacity-50");
+        menuButton?.setAttribute("aria-expanded", "false");
+      }
+
+      openIcon?.classList.toggle("hidden", isClosed);
+      closeIcon?.classList.toggle("hidden", !isClosed);
+    };
+
+    menuButton?.addEventListener("click", toggleDrawer);
+    closeButton?.addEventListener("click", toggleDrawer);
+    overlay?.addEventListener("click", toggleDrawer);
+
+    for (const link of mobileLinks) {
+      link.addEventListener("click", toggleDrawer);
+    }
+  }
+</script>

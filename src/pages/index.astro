@@ -1,8 +1,10 @@
 ---
 import HomePage from "../components/demo/home-page";
+import DemoMenu from "../components/demo/demo-menu.astro";
 import BaseLayout from "../layouts/base-layout.astro";
 ---
 
 <BaseLayout>
+  <DemoMenu currentPath={Astro.url.pathname} />
   <HomePage />
 </BaseLayout>

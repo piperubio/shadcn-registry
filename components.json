@@ -11,10 +11,10 @@
     "prefix": ""
   },
   "aliases": {
-    "components": "@/registry/ui/components",
-    "utils": "@/registry/ui/lib/utils",
-    "ui": "@/registry/ui/components/ui",
-    "lib": "@/registry/ui/lib",
+    "components": "@/registry/ui/react/components",
+    "utils": "@/registry/ui/react/lib/utils",
+    "ui": "@/registry/ui/react/components/ui",
+    "lib": "@/registry/ui/react/lib",
     "hooks": "@/hooks"
   },
   "iconLibrary": "lucide"

@@ -1,0 +1,68 @@
+---
+import BaseLayout from "../../layouts/base-layout.astro";
+import DemoMenu from "../../components/demo/demo-menu.astro";
+import Header from "../../../registry/ui/astro/components/header/header.astro";
+
+const navItems = [
+  { label: "Inicio", href: "#inicio" },
+  { label: "Productos", href: "#productos" },
+  { label: "Nosotros", href: "#nosotros" },
+  { label: "Contacto", href: "#contacto" },
+];
+---
+
+<BaseLayout title="Header Demo | Piperubio Registry" description="Reusable Astro header component demo.">
+  <DemoMenu currentPath={Astro.url.pathname} />
+
+  <main class="max-w-6xl mx-auto p-6 space-y-8">
+    <section class="space-y-2">
+      <h1 class="text-3xl font-bold">Header Component Demo</h1>
+      <p class="text-muted-foreground">
+        This page demonstrates the reusable `header.astro` component with both mobile menu variants.
+      </p>
+    </section>
+
+    <section class="rounded-xl border bg-card overflow-hidden">
+      <div class="border-b px-4 py-3">
+        <h2 class="font-semibold">Dropdown mobile menu</h2>
+      </div>
+
+      <Header
+        id="demo-header-dropdown"
+        navItems={navItems}
+        logoSrc="/img/logo.webp"
+        logoAlt="Demo Logo"
+        mobileLogoSrc="/img/logo.webp"
+        mobileMenuVariant="dropdown"
+        className="relative"
+      />
+
+      <div class="p-6 pt-10 text-sm text-muted-foreground">
+        Use `mobileMenuVariant=\"dropdown\"` for a simple stacked mobile menu.
+      </div>
+    </section>
+
+    <section class="rounded-xl border bg-card overflow-hidden">
+      <div class="border-b px-4 py-3">
+        <h2 class="font-semibold">Drawer mobile menu + language toggle + shrink on scroll</h2>
+      </div>
+
+      <Header
+        id="demo-header-drawer"
+        navItems={navItems}
+        logoSrc="/img/logo.webp"
+        logoAlt="Demo Logo"
+        mobileMenuVariant="drawer"
+        className="relative"
+        langToggle={{ label: "EN", href: "/" }}
+        shrinkOnScroll={true}
+        expandedHeightClass="h-[96px]"
+        compactHeightClass="h-[68px]"
+      />
+
+      <div class="p-6 pt-10 text-sm text-muted-foreground">
+        Use `mobileMenuVariant=\"drawer\"` for an off-canvas menu.
+      </div>
+    </section>
+  </main>
+</BaseLayout>
