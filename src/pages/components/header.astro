@@ -51,12 +51,6 @@ const item = await readRegistryItem('header');
       </div>
     </section>
 
-    <section class="space-y-4 mt-6">
-      <h2 class="text-xl font-semibold">Details</h2>
-      <div class="text-sm text-muted-foreground">
-        <div><strong>Framework:</strong> {item.meta?.framework ?? 'unknown'}</div>
-        {item.dependencies ? <div><strong>Dependencies:</strong> {item.dependencies.join(', ')}</div> : null}
-      </div>
-    </section>
+    
   </main>
 </BaseLayout>
